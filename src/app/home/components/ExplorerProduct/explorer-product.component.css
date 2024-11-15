@@ -1,0 +1,59 @@
+
+input{
+    border-width: 3px;
+   /*  width: 500px;; */
+}
+
+
+
+#comend{
+    background-color: rgba(255,255,255, 0.5);
+    max-width: 100%;
+    width: auto;
+    height: auto;
+
+}
+
+
+
+#text-comend h5{
+    color: #263c84;
+    font-weight: bold;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 42px;
+}
+
+#span-comend{
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+    font-weight: bold;
+
+}
+
+
+
+.card{
+    width: 12rem;
+    
+}
+
+
+.card-img-top{
+    width: 5rem;
+}
+
+.btn{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+[id^=btn-new-prod-]{
+    background-color: #f56c5e;
+    color: #ffffff;
+}
+
+
+[id^=btn-new-prod-]:hover{
+    color: #1d3557;
+}
+

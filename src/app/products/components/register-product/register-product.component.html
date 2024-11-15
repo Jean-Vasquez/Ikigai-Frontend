@@ -1,0 +1,79 @@
+<div id="container" class=p-5>
+    <div class="d-flex">
+        <div id="form-background" class="form-container mx-4 rounded-4 ">
+            <form class="m-5" (ngSubmit)="addProduct()">
+            <div class="form-group">
+                <label for="categoria">Categoría</label>
+                <select class="in"   [(ngModel)]="newproducts.categoria" name="cartegoria" >
+                    <option value="Cuadros">Cuadros</option>
+                    <option value="Peluches">Peluches</option>
+                    <option value="Accesorios">Accesorios</option>
+                    <option value="Figuras">Figuras</option>
+                    <option value="tazas">Tazas</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="name">Nombre</label>
+                <input type="text" class="form-control"[(ngModel)]="newproducts.nombre" name="nombre" id="name" placeholder="Nombre del Producto">
+            </div>
+            <div class="form-group">
+                <label for="imageUrl">Url Imagen</label>
+                <input type="text" class="form-control" [(ngModel)]="newproducts.imgUrl" name="imgUrl" id="imageUrl" placeholder="URL de la Imagen">
+            </div>
+            <div class="form-group">
+                <label for="description">Descripción</label>
+                <input maxlength="30" type="text" class="form-control"  [(ngModel)]="newproducts.descripcion" name="descripcion" id="description" placeholder="Descripción del Producto">
+            </div>
+            <div class="form-group">
+                <label for="presentation">Presentación</label>
+                <input type="text" class="form-control"  [(ngModel)]="newproducts.presentacion" name="presentacion"  id="presentation" placeholder="Presentación del Producto">
+            </div>
+            <div class="form-group">
+                <label for="price">Precio</label>
+                <input type="text" class="form-control" [(ngModel)]="newproducts.precio" name="precio"   id="price" placeholder="Precio del Producto">
+            </div>
+            <div class="form-group">
+                <label for="stock">Stock</label>
+                <input type="text" class="form-control"  [(ngModel)]="newproducts.stock"   name="stock" id="stock" placeholder="Stock del Producto">
+            </div>
+            <button type="submit" class="btn btn-danger mt-2" >  {{ isEditing ? 'Actualizar Producto' : 'Guardar Producto' }}</button>
+            </form>
+        </div>
+    
+  
+        <div class="table-container flex-grow-1 ">
+            <h2>Registrar Productos</h2>
+            <table class="table table-dark table-bordered ">
+            <thead>
+                <tr>
+                <th scope="col">Categoría</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Url Imagen</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Presentación</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+              
+                <tr *ngFor="let x of products">
+                <td>{{x.categoria}}</td>
+                <td>{{x.nombre}}</td>
+                <td>{{x.imgUrl}}</td>
+                <td>{{x.descripcion}}</td>
+                <td>{{x.presentacion}}</td>
+                <td>{{x.precio}}</td>
+                <td>{{x.stock}}</td>
+                <td>
+                    <i class="bi bi-pencil action-icons" (click)="editProduct(x)" title="Editar"></i>
+                    <i class="bi bi-trash action-icons" (click)="removeProduct(x.id)" title="Eliminar"></i>
+                </td>
+                </tr>
+                
+            </tbody>
+            </table>
+        </div>
+    </div>
+</div>

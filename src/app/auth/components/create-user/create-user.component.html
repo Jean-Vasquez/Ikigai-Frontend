@@ -1,0 +1,28 @@
+
+    <div class="contenedor-login" >
+        <div class="imagen-login" > 
+        </div>
+        <div class="formulario-login">
+            <div class="header">
+                <button class="btn-regresar" routerLink="/registrar-cliente">&#8592;</button>
+                <h1 class="title"><strong>Crear cuenta</strong></h1>
+            </div>
+            <form (ngSubmit)="DatosFijos()">
+                <div class="grupo-formulario">
+                    <label for="usuario">
+                        <i class="bi bi-person-circle"></i> NOMBRE DE USUARIO
+                    </label>
+                    <input type="text" [(ngModel)]="dataPersona.usuario" id="usuario" name="usuario" required>
+                </div>
+                <div class="grupo-formulario">
+                    <label for="contrasena">
+                        <i class="bi bi-lock-fill"></i> CONTRASEÑA
+                    </label>
+                    <input type="password" [(ngModel)]="dataPersona.contrasena" id="contrasena" name="contrasena" required>
+                </div>
+                <div class="grupo-formulario">
+                    <button type="submit" class="btn" ><strong>CREAR</strong></button>
+                </div>
+            </form>
+        </div>
+    </div>

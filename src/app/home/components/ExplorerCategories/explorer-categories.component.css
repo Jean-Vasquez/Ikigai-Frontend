@@ -1,0 +1,20 @@
+
+
+
+[id^=btncat-]{
+    height: auto;
+    width: auto;
+
+    background-color: rgb(255, 255, 255,0);
+}
+
+[id^=btn-img-]{
+    height: 440px;
+}
+
+[id^=btn2-img-]{
+
+    width: 420px;
+}
+
+

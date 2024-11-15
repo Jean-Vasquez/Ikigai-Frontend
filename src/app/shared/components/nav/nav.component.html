@@ -1,0 +1,91 @@
+<header>
+    <nav class="d-flex " id="up">
+
+        <div id="div-img" class="d-flex justify-content-between">
+            <a href="#" ><img class="m-2 p-2" src="../../../../assets/imagenes/logo-horizontal.png"></a>
+        </div>
+        
+        <div id="div-menus  " class="col- d-flex  justify-content-center">
+            <ul id="menus" class="d-flex m-0 dropdown">
+                <!-- </a> </a> -->
+                <a [routerLink]="'/index'"  id="menu-1"  class=" mx-5 p-5 d-flex flex-column justify-content-center ">
+                    <li >INICIO</li>
+                </a>
+                
+                <li class=" mx-5 p-5 d-flex flex-column justify-content-center">
+                    <span>|
+                    </span>
+                </li>
+
+                <a [routerLink]="'/productos'" id="menu-2"  class=" mx-5 p-5 d-flex flex-column justify-content-center ">
+                    <li >
+                        PRODUCTOS
+                    </li>
+                </a>
+                
+                <li class=" mx-5 p-5 d-flex flex-column justify-content-center">
+                    <span>
+                        |
+                    </span>
+                </li>
+
+                <a  [routerLink]="'/nosotros'" id="menu-3"  class=" mx-5  p-5 d-flex flex-column justify-content-center ">
+                    <li >
+                        NOSOTROS
+                    </li>
+                </a>
+
+                <div  class="dropdown d-flex flex-column justify-content-center ">
+                         
+
+                    <a  id="btn-dropdown" class="btn  btn-outline-light dropdown-toggle border-0 " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <p>
+                           
+                        </p>
+
+                    <i id="user-icon" class="bi bi-person-circle fs-2 "></i>
+                    </a>   
+                
+                   
+
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a [routerLink]="'/configuracion-usuario'" id="dropdown-submenus-1" class="dropdown-item" href="#">
+                                <i class="bi bi-gear fs-2"></i>
+                                Configuración
+                            </a>
+                        </li>
+
+                        <li>
+                            <a [routerLink]="'/comprobantes'" id="dropdown-submenus-2" class="dropdown-item" href="#">
+                                <i class="bi bi-receipt fs-2"></i>
+                                Comprobantes
+                            </a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a [routerLink]="'/registrar-producto'" id="dropdown-submenus-4" class="dropdown-item" href="#">
+                                <i class="bi bi-arrow-bar-up fs-2"></i>
+                                Registrar Productos   
+                            </a>
+                        </li> 
+
+
+                        <li>
+                            <a   (click)="logout()" [routerLink]="'/iniciar-sesion'" id="dropdown-submenus-3" class="dropdown-item" href="#">
+                                <i class="bi bi-door-open fs-2"></i>
+                                
+                                Cerrar Sesión
+                            </a>
+                        </li>
+
+
+                    </ul>
+                
+                </div>
+            </ul>
+        </div>
+          
+    </nav>
+</header>

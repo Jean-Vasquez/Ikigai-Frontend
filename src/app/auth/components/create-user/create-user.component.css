@@ -1,0 +1,103 @@
+
+  
+  .contenedor-login {
+    display: flex;
+    background-color: white;
+    border-radius: 0px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    width: 850px;
+    height: 600px;
+    max-width: 90%;
+  }
+  
+  .imagen-login {
+    flex: 0.9;
+    background-image: url('../../../../assets/imagenes/iniciofondo.png');  /* Ruta de imagen  */
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 60px;
+    position: relative;
+  }
+  
+  .btn-regresar {
+    position: absolute;
+    top: 8px;
+    left: -5px;
+    background-color: #F56C5E;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 100px  ;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  
+  .btn-regresar:hover {
+    background-color: #fc573a;
+  }
+  
+  .formulario-login {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 20px;
+  }
+  
+  .formulario-login h1 {
+    margin: 0;
+    text-align: center;
+    font-size: 45px;
+  }
+  
+  .grupo-formulario {
+    margin-bottom: 20px;
+  }
+  
+  .grupo-formulario label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .grupo-formulario label i {
+    margin-right: 8px;
+    font-size: 30px; /* Tamaño logo */
+  }
+  
+  .grupo-formulario input {
+    width: 80%;
+    padding: 15px; /* Aumentar el padding para inputs más altos */
+    border: 1px solid #ccc;
+    border-radius: 30px; /* Hacer los inputs ovalados */
+    background-color: #DFDFDF; /* Color plomo */
+    font-size: 16px; /* Aumentar el tamaño de la fuente */
+  }
+  
+  .btn {
+    background-color: #F56C5E;
+    color: white;
+    padding: 14px; /* Aumentar el padding para un botón más alto */
+    border: none;
+    border-radius: 10px; /* Botón con esquinas menos ovaladas */
+    cursor: pointer;
+    font-size: 24px; /* Aumentar el tamaño de la fuente */
+    width: 38%; /* Hacer el botón más grande */
+    margin: 50px auto; /* Centrar el botón y agregar espacio superior */
+    display: block; /* Asegurar que el botón sea un bloque centrado */
+    margin-top: 75px;
+  }
+  
+  .btn:hover {
+    background-color: #fc573a;
+  }
+  

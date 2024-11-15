@@ -1,0 +1,27 @@
+.body{
+    width: 100dvw;
+    background: radial-gradient(circle at top left, #e73847, #a8dadb, #457b9d, #1d3557); /* Aplica un fondo degradado */
+}
+
+.text_field{
+    border-radius: 20px;
+    border-color: black;
+    border-width: 3px;
+  
+}
+
+.fondo{
+
+    width: 80dvw;
+
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.btn_guardar{   
+    font-weight: bold;
+    background-color: #f66b5e;   
+}
+
+.btn_guardar:hover{
+    background-color: #cc463a;
+}

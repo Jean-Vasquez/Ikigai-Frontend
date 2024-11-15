@@ -1,0 +1,73 @@
+nav{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    background-color:#214678;
+    color: white;
+    height: 15%;
+    font-weight: 600;
+}
+
+
+#div-img a img{
+    height: 100px;
+    
+}
+
+
+#menus{
+    list-style: none;
+    
+}
+
+[id^=menu-]{
+    color: white;
+    font-style: none;
+    text-decoration: none;    
+}
+
+
+#user-menu{
+    color: white;
+    font-style: none;
+    text-decoration: none;    
+}
+
+
+[id^=menu-]:hover{
+    color: #F56C5E;
+
+}
+
+span{
+    font-size: 40px;
+}
+
+#user{
+    font-weight: 600;
+    color: white;
+    font-size: 20px;
+}
+
+#dropdown{
+    height: 30px;
+}
+
+#user-icon{
+    height: 30px;
+}
+
+#up{
+    width: 100%;
+}
+
+#btn-dropdown{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+[id^=dropdown-submenus-]{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+}

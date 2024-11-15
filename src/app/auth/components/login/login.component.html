@@ -1,0 +1,36 @@
+ 
+<div id="container">
+    <div class="contenedor-login">
+    <div class="imagen-login">
+
+    </div>
+    <div class="formulario-login">
+        <h1 class="title"><strong>Iniciar sesión</strong></h1>
+        <form  (ngSubmit)="sendLogin()">
+            <div class="grupo-formulario">
+                <label for="usuario">
+                    <i class="bi bi-person-circle"></i> USUARIO
+                </label>
+                <input type="text" [(ngModel)]="Usuario.usuario"  id="usuario" name="usuario" required>
+            </div>
+            <div class="grupo-formulario">
+                <label for="contrasena" >
+                    <i class="bi bi-lock-fill"></i> CONTRASEÑA
+                </label>
+                <input type="password" [(ngModel)]="Usuario.contrasena" id="contrasena" name="contrasena" required>
+            </div>
+            <div class="enlace-registro">
+                <span>¿No tienes una cuenta?</span>
+                <a routerLink="/registrar-cliente">Regístrate</a>
+            </div>
+            <div class="grupo-formulario">
+                <button type="submit" class="btn"><strong>
+                   
+                    INGRESAR
+                </strong></button>
+            </div>
+            <a  *ngIf="loginexitoso" ></a>
+        </form>
+    </div>
+    </div>
+</div>

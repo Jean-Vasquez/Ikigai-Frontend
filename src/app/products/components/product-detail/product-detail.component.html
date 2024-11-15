@@ -1,0 +1,59 @@
+  <!-- Contenedor principal -->
+  <div class="body-container row">
+        
+    <!-- Contenedor de categorías, búsqueda y carrito -->
+    <div class="row top-bar d-flex justify-content-center align-items-center" >
+       
+      <!-- Contenedor de detalles-->
+       <div class="col">
+            <div class="row detalles d-flex justify-content-center" style="padding: 70px;">
+                <div *ngFor="let x of products" class="details-container">
+                    <div class="row" style="padding: 20px;">
+                        <div class="col-lg-3 product-image">
+                            <img [src]="x.imgUrl" alt="">
+                        </div>
+                        <div  class="col-lg-6 product-details">
+                            <b>{{x.nombre}}</b>
+                            <br><br>
+                            <div class="row">
+                                <div class="col">
+                                    <b>Categoría:</b>{{x.categoria}}
+                                    <br>
+                                    <div class="row" style="padding-left: 40px;">
+                                        <div class="col-lg-1 d-flex justify-content-center align-items-center">
+                                            <button class="btn btn-danger">-</button>
+                                        </div>
+                                        <div class="col-lg-3 d-flex justify-content-center align-items-center text-center">
+                                            <p class="text-dark" style="font-size: 1.5rem;">1</p>
+                                        </div>
+                                        <div class="col-lg-1 d-flex justify-content-center align-items-center">
+                                            <button class="btn btn-danger">+</button>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <b>Precio:{{x.precio}}</b> 
+                                </div>
+                                <div class="col">
+                                    <b>Presentación:</b> {{x.presentacion}}
+                                    <br>
+                                    <b>Stock:</b> {{x.stock}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 product-actions">
+                            <div class="row d-flex justify-content-center align-items-center" style="height: 100%; padding-bottom: 20px;">
+                                <button class="btn btn-danger d-grid gap-2 mt-auto">Agregar al carrito</button>
+                            </div>
+                            <div class="row d-flex justify-content-center align-items-center">
+                                <button class="btn btn-danger d-grid gap-2">Comprar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="padding: 20px;">
+                        <b class="product-description">Descripción:</b>
+                        {{x.descripcion}}
+                    </div>
+                </div>
+            </div>
+
+       </div>

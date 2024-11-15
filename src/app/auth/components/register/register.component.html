@@ -1,0 +1,52 @@
+<div id="body">
+    <div class="contenedor">
+        <div class="imagen"></div>
+        <form class="formulario"  (ngSubmit)="DatosTemp()" >
+            <button class="btn-regresar" routerLink="/iniciar-sesion">&#8592;</button>
+            <h1 class="title"><strong>Regístrate</strong></h1>
+            <div class="campos">
+                <div class="campo">
+                    <label>NOMBRES</label>
+                    <input class="in" [(ngModel)]="dataPersona.nombres" name="nombres" type="text">
+                </div>
+
+                <div class="campo">
+                    <label>APELLIDOS</label>
+                    <input class="in" [(ngModel)]="dataPersona.apellidos"name="apellidos" type="text">
+                </div>
+
+                <div class="campo">
+                    <label>TIPO DE DOCUMENTO</label>
+                    <select class="in"  [(ngModel)]="dataPersona.tipodoct" name="tipodoct">
+                        <option value="dni">DNI</option>
+                        <option value="pasaporte">Pasaporte</option>
+                        <option value="carnet">Carnet de extranjería</option>
+                    </select>
+                </div>
+                <div class="campo">
+                    <label>NÚMERO DE DOCUMENTO</label>
+                    <input class="in" [(ngModel)]="dataPersona.numerodoct"  name="numerodoct" type="text">
+                </div>
+                <div class="campo">
+                    <label>FECHA DE NACIMIENTO</label>
+                    <input class="in"  [(ngModel)]="dataPersona.fechanaci" name="fechanaci" type="date">
+                </div>
+                <div class="campo">
+                    <label>DIRECCIÓN</label>
+                    <input class="in"  [(ngModel)]="dataPersona.direccion" name="direccion" type="text">
+                </div>
+                <div class="campo">
+                    <label>CORREO ELECTRÓNICO</label>
+                    <input class="in" [(ngModel)]="dataPersona.correo" name="correo" type="email">
+                </div>
+                <div class="campo">
+                    <label>TELÉFONO</label>
+                    <input class="in"  [(ngModel)]="dataPersona.telefono" name="telefono" type="tel">
+                </div>
+            </div>
+            <div class="button">
+                <button class="btn" type="submit" ><strong>SIGUIENTE</strong></button>
+            </div>
+        </form>
+    </div>
+</div>

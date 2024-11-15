@@ -1,0 +1,111 @@
+#body{
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, #26627c, #508ea3, #255164);
+  font-family: Arial, sans-serif;
+}
+
+.contenedor {
+  display: flex;
+  background-color: white;
+  border-radius: 0px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  width: 850px;
+  height: 600px;
+  max-width: 90%;
+  position: relative;
+}
+
+.imagen {
+  flex: 0.9;
+  background-image: url('../../../../assets/imagenes/iniciofondo.png');  /* Ruta de la imagen  */
+  background-size: cover;
+  background-position: center;
+}
+
+.imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.formulario {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.btn-regresar {
+  position: absolute;
+  top: 30px;
+  left: 20px;
+  background-color: #F56C5E;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 100px  ;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.btn-regresar:hover {
+  background-color: #fc573a;
+}
+
+.title {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 45px;
+}
+
+.campos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.campo {
+  flex: 1 1 calc(50% - 10px); /* Ajuste para que los campos ocupen la mitad del contenedor */
+  display: flex;
+  flex-direction: column;
+}
+
+.campo label {
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.campo input, .campo select {
+  height: 40px;
+  border-radius: 30px;
+  border: 1px solid #ccc;
+  background-color: #DFDFDF; /* Color plomo */
+  padding: 0 15px;
+  width: 90%; /* Asegura que ocupen todo el ancho disponible */
+}
+
+.btn {
+  background-color: #F56C5E;
+  color: white;
+  padding: 14px; /* Aumentar el padding para un botón más alto */
+  border: none;
+  border-radius: 10px; /* Botón con esquinas menos ovaladas */
+  cursor: pointer;
+  font-size: 24px; /* Aumentar el tamaño de la fuente */
+  width: 38%; /* Hacer el botón más grande */
+  margin: 50px auto; /* Centrar el botón y agregar espacio superior */
+  display: block; /* Asegurar que el botón sea un bloque centrado */
+}
+
+.btn:hover {
+  background-color: #fc573a;
+}
+

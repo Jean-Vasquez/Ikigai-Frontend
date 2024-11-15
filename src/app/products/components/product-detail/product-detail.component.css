@@ -1,0 +1,167 @@
+/* Estilos para la cabecera */
+.header {
+    background-color: #2e69a3;
+    height: 80px;
+    width: 100vw;
+    margin: 0;
+}
+.header .logo {
+    width: 80%;
+}
+.header .store-name {
+    color: white;
+}
+.header .nav-link {
+    color: white;
+}
+
+.body{
+    margin: 0px;
+}
+
+/* Estilos para el contenedor principal */
+.body-container {
+    width: 100vw;
+    height: 80vh;
+    margin: 0;
+    background: radial-gradient(circle at top left, #e73847, #a8dadb, #457b9d, #1d3557);
+}
+
+.espaciado{
+    height: 20px;
+    background-color: none;
+}
+
+/* Estilos para el contenedor de categorías, búsqueda y carrito */
+.top-bar {
+    height: 100px;
+}
+.top-bar .category {
+    color: white;
+}
+.top-bar .search-bar {
+    width: 100%;
+}
+.top-bar .search-bar input[type="text"] {
+    padding-right: 2.5rem;
+}
+.top-bar .cart {
+    color: white;
+}
+
+.cart{
+    display: flex;
+    justify-content: center;
+    justify-items: top;
+}
+
+.txt.cart{
+    padding-right: 20px;
+}
+
+/* Estilos para el contenedor de detalles */
+.details-container {
+    width: 60vw;
+    height: 50vh;
+    background-color: rgba(255, 255, 255, 0.5); /* Blanco con 50% de opacidad */
+    color: black;
+    margin-top: 20px;
+}
+
+/* Estilos para el footer */
+.footer {
+    background-color: #273747;
+    width: 100vw;
+    margin: 0;
+}
+.footer .location-info,
+.footer .social-links {
+    color: white;
+}
+.footer .logo {
+    width: 100px;
+    height: 100px;
+}
+
+/* Estilos para el mensaje de derechos reservados */
+.rights-reserved {
+    background-color: #A8A5A5;
+    text-align: right;
+    width: 100vw;
+    margin: 0;
+}
+.rights-reserved p {
+    margin: 0;
+    padding-right: 20px;
+}
+
+/* Estilos para el contenedor de categorías, búsqueda y carrito */
+.top-bar {
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+.top-bar .category {
+    color: white;
+    margin-left: 20px; /* Añadir margen izquierdo para separación */
+}
+.top-bar .search-bar {
+    width: 600px; /* Ancho ajustado para el contenedor de búsqueda */
+    margin-left: auto; /* Mover a la derecha */
+    margin-right: 20px; /* Margen derecho */
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0; /* Color de fondo */
+    border-radius: 20px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    padding: 10px; /* Ajuste de padding para altura */
+}
+.top-bar .search-bar input[type="text"] {
+    flex: 1; /* Que el input ocupe el espacio restante */
+    padding: 1px; /* Aumentar el padding para mayor altura */
+    border: none; /* Quitar el borde */
+    background: none; /* Fondo transparente */
+    font-size: 0.rem; /* Tamaño de fuente */
+    color: #333; /* Color del texto */
+    outline: none; /* Quitar el contorno al hacer foco */
+}
+.top-bar .search-bar .bi-search {
+    margin-right: 10px; /* Margen derecho entre el icono y el campo de texto */
+    color: #333; /* Color del icono de búsqueda */
+}
+.top-bar .cart {
+    color: white;
+    margin-left: 2px; /* Añadir margen izquierdo para separación */
+}
+/* Estilos para el contenedor del buscador */
+.search-bar {
+    position: relative;
+    width: 100%;
+}
+
+/* Estilos para el input del buscador */
+.search-bar input[type="text"] {
+    padding-right: 2.5rem; /* Espacio para el ícono de búsqueda */
+    border: none; /* Quitar borde del input */
+    background: none; /* Fondo transparente */
+    font-size: 1rem; /* Tamaño de fuente */
+    color: #333; /* Color del texto */
+    outline: none; /* Quitar contorno al hacer foco */
+    width: 100%; /* Ajustar al 100% del contenedor */
+}
+
+/* Estilos para el ícono de búsqueda */
+.search-bar .bi-search {
+    color: black; /* Color del ícono */
+    pointer-events: none; /* Evitar interacción con el ícono */
+}
+/* Estilos para el contenedor de categorías, búsqueda y carrito */
+
+.header .nav-link {
+    text-decoration: underline;
+    text-decoration-skip-ink: auto; /* Evitar que el subrayado cubra descenders */
+}
+
+.header .nav-link:hover {
+    text-decoration: none; /* Quitar el subrayado al pasar el ratón */
+}

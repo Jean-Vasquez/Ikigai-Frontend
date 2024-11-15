@@ -1,0 +1,232 @@
+#body {
+    margin: 0; 
+    font-family: Arial, sans-serif; 
+    display: flex; 
+    flex-direction: column; 
+    min-height: 100vh; 
+    background: radial-gradient(circle at top left, #e73847, #a8dadb, #457b9d, #1d3557); /* Aplica un fondo degradado */
+}
+
+/* Contenedor principal que se expande para llenar el espacio disponible */
+.wrapper {
+    flex: 1; 
+    display: flex; 
+    flex-direction: column; 
+}
+
+
+/* Contenedor principal para el contenido de la página */
+.container {
+    margin-top: 120px; 
+    padding: 20px; 
+    flex: 1; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    position: relative;
+}
+
+/* Estilo para la barra de búsqueda */
+.search-bar {
+    text-align: center; 
+    margin: 20px 0; 
+    width: 100%; 
+    display: flex; 
+    justify-content: center; 
+}
+
+/* Estilo para el campo de entrada de búsqueda */
+.search-bar input {
+    width: 500px; 
+    padding: 15px; 
+    border: none; 
+    border-radius: 30px 0 0 30px; 
+}
+
+.btn-search {
+    background-color: white; 
+    color: black; 
+    border: none; 
+    padding: 0px 15px; 
+    border-radius: 0 30px 30px 0; 
+    cursor: pointer; 
+}
+
+.btn-search:hover {
+    background-color: #eaeaea; 
+}
+
+/* Estilo para la sección de categorías */
+.categories {
+    width: 100%; 
+    display: flex; 
+    justify-content: flex-start; 
+    padding: 0 20px; 
+    box-sizing: border-box; 
+    margin-right: auto;
+    position: relative;
+    
+}
+
+/* Estilo para los botones de categorías */
+.categories-button {
+    background-color: transparent; 
+    color: white; 
+    padding: 10px 0px; 
+    cursor: pointer; 
+    border: none;
+    align-items: center; 
+    font-size: 25px; 
+    margin-top: -100px;
+}
+
+
+.categories-button i {
+    margin-right: 10px; 
+    font-size: 30px;
+    
+}
+
+.carrito {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    margin-top: -80px;
+}
+
+.carrito-button {
+    background-color: transparent;
+    color: white;
+    padding: 10px 0px;
+    cursor: pointer;
+    border: none;
+    align-items: center;
+    font-size: 25px;
+}
+
+.carrito-button i {
+    margin-left: 10px;
+    font-size: 30px;
+}
+
+/* Estilo para la sección de productos */
+.products {
+    display: flex; 
+    justify-content: center;
+    flex-wrap: wrap; 
+}
+
+/* Estilo para cada tarjeta de producto */
+.product-card {
+    background: rgba(255, 255, 255, 0.5); 
+    border-radius: 35px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 10px; 
+    padding: 10px; 
+    text-align: center; 
+    width: 220px; 
+    position: relative; 
+    margin-top: 50px;
+}
+
+/* Estilo para la imagen del producto */
+.product-image {
+    width: 100%; 
+    height: 200px; 
+    /* background-image: url('../../../images/Goku_niño.jpg'); Imagen de fondo del producto */
+    background-size: cover; 
+    background-position: center; 
+    border-radius: 35px; 
+    margin-bottom: 15px; 
+}
+
+
+
+/* Estilo para el texto del producto */
+.product-card p {
+    color: black; 
+    font-size: 18px; 
+    margin: 10px 0; 
+}
+
+/* Grupo de botones dentro de la tarjeta de producto */
+.button-group {
+    display: flex; 
+    justify-content: space-between;
+}
+
+/* Estilo para los botones dentro de la tarjeta de producto */
+.product-card button {
+    color: white; 
+    border: none; 
+    padding: 10px 10px; 
+    margin: 5px 0; 
+    border-radius: 15px; 
+    cursor: pointer; 
+    flex: 1; 
+    margin: 5px; 
+}
+
+
+.btn-agregar {
+    background-color: #F56C5E; 
+}
+
+.btn-agregar:hover {
+    background-color: #fc573a;
+}
+
+.btn-comprar {
+    background-color: #D0222F; 
+}
+
+.btn-comprar:hover {
+    background-color: #fc573a; 
+}
+
+.pagination {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.pagination button {
+    background-color: #F56C5E;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.pagination button:hover {
+    background-color: #fc573a;
+}
+
+/* Estilo para el producto seleccionado en el carrito */
+.product-image {
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    background-position: center;
+}
+
+.cart-item-image {
+    width: 50px;
+    height: 50px;
+}
+
+
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+  }
+  
+.quantity-control button {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+}
+
+  

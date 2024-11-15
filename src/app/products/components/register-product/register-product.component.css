@@ -1,0 +1,31 @@
+#container{
+
+    height: 100dvh;
+    min-width: 100dvw;
+    background: radial-gradient(circle at top left, #e73847, #a8dadb, #457b9d, #1d3557); /* Aplica un fondo degradado */
+}
+
+.form-container {
+    max-width: 300px; 
+  }
+  
+  .table-container {
+    max-height: 400px; 
+    overflow-y: auto;
+  }
+  
+  .action-icons {
+    font-size: 1.25rem;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+
+  #form-background{
+    background-color: rgb(255,255,255,0.5);
+  }
+  
+label{
+    color: #1d3557;
+    font-weight: bold;
+    font-size: 20px;
+}

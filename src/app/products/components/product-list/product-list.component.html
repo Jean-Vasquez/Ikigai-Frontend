@@ -1,0 +1,76 @@
+<div id="body ">
+  <!--<app-nav></app-nav>-->
+  <div class="wrapper">
+    <div class="container">
+      <div class="search-bar">
+        <input type="text" placeholder="Buscar">
+        <button class="btn-search"><i class="bi bi-search"></i></button>
+      </div>
+      
+      <div class="categories">
+        <button class="categories-button">
+          <i class="bi bi-list-ul"></i><strong>Categorías</strong>
+        </button>
+      </div>
+      
+      <div class="carrito">
+        <button class="carrito-button">
+          <strong class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">  
+            <i class="bi bi-cart-fill"></i> Carrito <i class="bi bi-caret-right-fill"></i>
+          </strong>
+        </button>
+        
+        <nav class="navbar">
+          <div class="container-fluid">
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+              <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><strong>CARRITO DE COMPRAS</strong></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </div>
+              <div class="offcanvas-body">
+                <ul class="list-group">
+                  <li *ngFor="let item of cartItems" class="list-group-item">
+                    <img [src]="item.imgUrl" alt="{{ item.nombre }}" class="cart-item-image">
+                    {{ item.nombre }} - S/{{ item.precio }} - Cantidad: {{ item.quantity }}
+                    <div class="quantity-control">
+                      <button (click)="decreaseQuantity(item)">-</button>
+                      {{ item.quantity }}
+                      <button (click)="increaseQuantity(item)">+</button>
+                      <button (click)="deleteProductCart(item.id)"      class="m-auto border border-0 ">
+                      <i class="bi bi-trash3 "></i>
+                      </button>
+                    </div>
+                    <div>
+                     
+                    </div>
+                  </li>
+                </ul>
+                <button class="btn btn-danger mt-3 " (click)="clearCart()">Limpiar Carrito</button>
+                <button class="btn btn-primary mt-3 mx-3" [routerLink]="'/checkout'">Comprar</button>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+      
+      <section class="products">
+        <div class="product-card" *ngFor="let product of products">
+          <div class="product-image m-auto" [style.background-image]="'url(' + product.imgUrl + ')'"></div>
+          <p>{{ product.nombre }}</p>
+          <p><strong>Categoría:</strong>{{ product.categoria }}</p>
+          <p><strong>Precio: S/{{ product.precio }}</strong></p>
+          <div class="button-group">
+            <button class="btn-agregar" (click)="addToCart(product)">Agregar al carrito</button>
+            <button class="btn-comprar" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="selectProduct(product)" (click)="verDetalles(product)">Comprar</button>
+          </div>
+        </div>
+      </section>
+      
+      
+      <div class="pagination">
+        <button class="pagination-button">Ver más</button>
+      </div>
+    </div>
+
+    <!-- <app-footer></app-footer>-->
+  </div>
