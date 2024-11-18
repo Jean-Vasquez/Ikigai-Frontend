@@ -1,0 +1,73 @@
+.products {
+    display: flex; 
+    justify-content: center;
+    flex-wrap: wrap; 
+}
+
+/* Estilo para cada tarjeta de producto */
+.product-card {
+    background: rgba(255, 255, 255, 0.5); 
+    border-radius: 35px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 10px; 
+    padding: 10px; 
+    text-align: center; 
+    width: 220px; 
+    position: relative; 
+    margin-top: 50px;
+}
+
+/* Estilo para la imagen del producto */
+.product-image {
+    width: 100%; 
+    height: 200px; 
+    /* background-image: url('../../../images/Goku_niño.jpg'); Imagen de fondo del producto */
+    background-size: cover; 
+    background-position: center; 
+    border-radius: 35px; 
+    margin-bottom: 15px; 
+}
+
+
+
+/* Estilo para el texto del producto */
+.product-card p {
+    color: black; 
+    font-size: 18px; 
+    margin: 10px 0; 
+}
+
+/* Grupo de botones dentro de la tarjeta de producto */
+.button-group {
+    display: flex; 
+    justify-content: space-between;
+}
+
+/* Estilo para los botones dentro de la tarjeta de producto */
+.product-card button {
+    color: white; 
+    border: none; 
+    padding: 10px 10px; 
+    margin: 5px 0; 
+    border-radius: 15px; 
+    cursor: pointer; 
+    flex: 1; 
+    margin: 5px; 
+}
+
+
+.btn-agregar {
+    background-color: #F56C5E; 
+}
+
+.btn-agregar:hover {
+    background-color: #fc573a;
+}
+
+.btn-comprar {
+    background-color: #D0222F; 
+}
+
+.btn-comprar:hover {
+    background-color: #fc573a; 
+}

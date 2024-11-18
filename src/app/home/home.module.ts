@@ -5,8 +5,8 @@ import { RouterModule } from '@angular/router';
 
 import { MainComponent } from './pages/main.component';
 import { CarrouselComponent } from './components/Carrousel/carrousel.component';
-import { ExplorerProductComponent } from './components/ExplorerCategories/explorer-categories.component';
-import { ExplorerCategoriesComponent } from './components/ExplorerProduct/explorer-product.component';
+import { ExplorerProductComponent } from './components/explorer-categories/explorer-categories.component';
+import { ExplorerCategoriesComponent } from './components/explorer-product/explorer-product.component';
 
 
 

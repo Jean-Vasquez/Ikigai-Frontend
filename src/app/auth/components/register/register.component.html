@@ -1,8 +1,8 @@
-<div id="body">
-    <div class="contenedor">
+<div class="contenedor">
+    
         <div class="imagen"></div>
         <form class="formulario"  (ngSubmit)="DatosTemp()" >
-            <button class="btn-regresar" routerLink="/iniciar-sesion">&#8592;</button>
+            <button class="btn-regresar" routerLink="/login">&#8592;</button>
             <h1 class="title"><strong>Regístrate</strong></h1>
             <div class="campos">
                 <div class="campo">
@@ -44,9 +44,10 @@
                     <input class="in"  [(ngModel)]="dataPersona.telefono" name="telefono" type="tel">
                 </div>
             </div>
-            <div class="button">
+            <div class="button"  >
                 <button class="btn" type="submit" ><strong>SIGUIENTE</strong></button>
             </div>
+            
         </form>
-    </div>
+    
 </div>

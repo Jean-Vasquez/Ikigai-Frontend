@@ -1,0 +1,39 @@
+body {
+    margin: 0; 
+    font-family: Arial, sans-serif; 
+    display: flex; 
+    flex-direction: column; 
+    min-height: 100vh; 
+    background: radial-gradient(circle at top left, #e73847, #a8dadb, #457b9d, #1d3557); /* Aplica un fondo degradado */
+}
+
+.comprobante {
+    width: 100vw; 
+    padding-bottom: 50px; 
+    padding-top: 80px; 
+    background: radial-gradient(circle at top left, #e73847, #a8dadb, #457b9d, #1d3557); 
+    margin: 0;
+}
+
+.contenido-blanco {
+    padding: 80px 20px 80px;
+    width: 45%;
+    margin: auto;
+    
+}
+
+.col {
+    padding: 40px;
+    margin-top: 40px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+
+.femision {
+    text-align: left;
+    margin-bottom: 50px;
+    font-size: 22px;
+   
+   
+}
+

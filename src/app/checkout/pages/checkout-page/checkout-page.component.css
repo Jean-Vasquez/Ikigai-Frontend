@@ -1,0 +1,100 @@
+.checkout-page {
+    background: radial-gradient(circle at top left, #e73847, #a8dadb, #457b9d, #1d3557); /* Fondo como mencionaste */
+    min-height: 100vh;
+    padding: 30px 0;
+  }
+  
+  .checkout-page .container {
+    max-width: 1200px;
+    padding: 0 15px;
+  }
+  
+  .checkout-page .row {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+  }
+  
+  .checkout-page .col-md-8,
+  .checkout-page .col-md-4 {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .checkout-page .col-md-8 {
+    margin-bottom: 30px;
+  }
+  
+  .checkout-page h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .checkout-page .section-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  .checkout-page .form-control {
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 16px;
+  }
+  
+  .checkout-page button {
+    background-color: #28a745;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    width: 100%;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .checkout-page button:hover {
+    background-color: #218838;
+  }
+  
+  .checkout-page .product-summary,
+  .checkout-page .payment-summary {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .checkout-page .product-summary table,
+  .checkout-page .payment-summary table {
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .checkout-page .product-summary table th,
+  .checkout-page .payment-summary table th {
+    background-color: #f1f1f1;
+    font-weight: bold;
+    padding: 12px;
+  }
+  
+  .checkout-page .product-summary table td,
+  .checkout-page .payment-summary table td {
+    padding: 12px;
+    text-align: center;
+  }
+  
+  .checkout-page .product-summary table td,
+  .checkout-page .payment-summary table td {
+    border-top: 1px solid #ddd;
+  }
+  
+  .checkout-page .product-summary table tr:last-child td,
+  .checkout-page .payment-summary table tr:last-child td {
+    border-bottom: 1px solid #ddd;
+  }
+  

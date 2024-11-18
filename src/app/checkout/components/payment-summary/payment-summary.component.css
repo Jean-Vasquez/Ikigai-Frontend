@@ -1,0 +1,30 @@
+.checkout-summary {
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  .checkout-summary h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .checkout-summary p {
+    font-size: 1rem;
+  }
+  
+  .checkout-summary .btn {
+    background-color: #28a745;
+    color: white;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .checkout-summary .btn:hover {
+    background-color: #218838;
+  }
+  

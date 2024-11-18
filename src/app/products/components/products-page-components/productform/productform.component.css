@@ -1,0 +1,13 @@
+.form-container {
+    max-width: 300px; 
+  }
+
+  label{
+    color: #1d3557;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#form-background{
+  background-color: rgb(255,255,255,0.5);
+}

@@ -1,0 +1,27 @@
+.detalles-tabla {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.detalles-tabla th, .detalles-tabla td {
+    border: 3px solid black;
+    padding: 8px;
+    text-align: center;
+}
+
+.TOTAL {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.TOTAL .total {
+    border-collapse: collapse;
+    width: 28%;
+}
+
+.TOTAL .total th {
+    border: 3px solid black;
+    padding: 8px;
+    text-align: center;
+}

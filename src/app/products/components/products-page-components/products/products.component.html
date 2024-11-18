@@ -1,0 +1,12 @@
+<section class="products">
+    <div class="product-card" *ngFor="let product of products">
+      <div class="product-image m-auto" [style.background-image]="'url(' + product.imgUrl + ')'"></div>
+      <p>{{ product.nombre }}</p>
+      <p><strong>Categoría:</strong>{{ product.categoria }}</p>
+      <p><strong>Precio: S/{{ product.precio }}</strong></p>
+      <div class="button-group">
+        <button class="btn-agregar" (click)="addToCart(product)">Agregar al carrito</button>
+        <button class="btn-comprar" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="selectProduct(product)" (click)="verDetalles(product)">Comprar</button>
+      </div>
+    </div>
+  </section>

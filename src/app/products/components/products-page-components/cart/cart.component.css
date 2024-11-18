@@ -1,0 +1,55 @@
+
+.carrito {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    margin-top: -80px;
+}
+
+.carrito-button {
+    background-color: transparent;
+    color: white;
+    padding: 10px 0px;
+    cursor: pointer;
+    border: none;
+    align-items: center;
+    font-size: 25px;
+}
+
+.carrito-button i {
+    margin-left: 10px;
+    font-size: 30px;
+}
+
+
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+  }
+  
+.quantity-control button {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+}
+
+
+
+
+
+.product-image {
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    background-position: center;
+}
+
+.cart-item-image {
+    width: 50px;
+    height: 50px;
+}
+
+
+

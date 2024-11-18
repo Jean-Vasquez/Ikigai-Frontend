@@ -1,0 +1,10 @@
+.container{
+    height: 100dvh;
+    min-width: 100dvw;
+    background: radial-gradient(circle at top left, #e73847, #a8dadb, #457b9d, #1d3557); /* Aplica un fondo degradado */
+}
+
+
+#form-background{
+    background-color: rgb(255,255,255,0.5);
+  }

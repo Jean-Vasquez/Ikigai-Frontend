@@ -1,0 +1,12 @@
+
+
+.table-container {
+    max-height: 400px; 
+    overflow-y: auto;
+  }
+  
+  .action-icons {
+    font-size: 1.25rem;
+    cursor: pointer;
+    margin-right: 10px;
+  }
