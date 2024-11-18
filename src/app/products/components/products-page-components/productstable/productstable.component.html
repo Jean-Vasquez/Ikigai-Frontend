@@ -1,0 +1,35 @@
+
+<div class="table-container flex-grow-1 ">
+    <h2>Registrar Productos</h2>
+    <table class="table table-dark table-bordered ">
+    <thead>
+        <tr>
+        <th scope="col">Categoría</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Url Imagen</th>
+        <th scope="col">Descripción</th>
+        <th scope="col">Presentación</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Stock</th>
+        <th scope="col">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+      
+        <tr *ngFor="let x of products">
+        <td>{{x.categoria}}</td>
+        <td>{{x.nombre}}</td>
+        <td>{{x.imgUrl}}</td>
+        <td>{{x.descripcion}}</td>
+        <td>{{x.presentacion}}</td>
+        <td>{{x.precio}}</td>
+        <td>{{x.stock}}</td>
+        <td>
+            <i class="bi bi-pencil action-icons" (click)="editProduct(x)" title="Editar"></i>
+            <i class="bi bi-trash action-icons" (click)="removeProduct(x.id)" title="Eliminar"></i>
+        </td>
+        </tr>
+        
+    </tbody>
+    </table>
+</div>

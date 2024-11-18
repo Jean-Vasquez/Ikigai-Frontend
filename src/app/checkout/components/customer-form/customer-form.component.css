@@ -1,0 +1,50 @@
+.checkout-customer-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  }
+  
+  .checkout-customer-form h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .checkout-customer-form .form-label {
+    font-size: 1rem;
+    margin-bottom: 8px;
+    color: #333;
+  }
+  
+  .checkout-customer-form .form-control {
+    border-radius: 8px;
+    background-color: #f7f7f7;
+    color: #555;
+    padding: 10px;
+  }
+  
+  .checkout-customer-form .form-control[disabled] {
+    background-color: #e9ecef;
+    color: #6c757d;
+  }
+  
+  .checkout-customer-form .form-control {
+    pointer-events: none; /* Impide la interacción */
+  }
+  
+  .checkout-customer-form button {
+    background-color: #007bff;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 16px;
+    width: 100%;
+    border: none;
+    cursor: not-allowed;
+  }
+  
+  .checkout-customer-form button:hover {
+    background-color: #0056b3;
+    cursor: not-allowed;
+  }
+  

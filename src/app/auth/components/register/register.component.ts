@@ -4,12 +4,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { datosPersona } from '../../interfaces/datosPersona';
 import { Route, Router } from '@angular/router';
 @Component({
-  selector: 'app-register',
+  selector: 'auth-register',
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-  /*------------------- JEAN----------------------------- */
+  
   dataPersona : datosPersona = {
     nombres: '',
     apellidos: '',
@@ -38,8 +38,8 @@ export class RegisterComponent {
       telefono : this.dataPersona.telefono
     }
     localStorage.setItem('temporal',JSON.stringify(temporal))
-    this.router.navigate(['/crear-usuario'])
+    this.router.navigate(['auth/create-user']) 
 
   }
-  /*------------------- JEAN----------------------------- */
+ 
 }

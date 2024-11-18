@@ -9,12 +9,20 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthRoutingModule } from './auth-routing.module';
 
 
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { CreateuserPageComponent } from './pages/createuser-page/createuser-page.component';
+import { RegisterPageComponent } from './pages/register-page/register-page.component';
+
+
 
 @NgModule({
   declarations: [
     LoginComponent,
     RegisterComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    LoginPageComponent,
+    CreateuserPageComponent,
+    RegisterPageComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +34,10 @@ import { AuthRoutingModule } from './auth-routing.module';
   ], exports:[
     LoginComponent,
     RegisterComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    LoginPageComponent,
+    CreateuserPageComponent,
+    RegisterPageComponent
   ]
 })
 export class AuthModule { }

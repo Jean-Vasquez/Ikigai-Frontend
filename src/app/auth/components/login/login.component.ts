@@ -4,7 +4,7 @@ import { AuthService } from '../../services/Auth.service';
 import { Router } from '@angular/router';
 import { datosPersona } from '../../interfaces/datosPersona';
 @Component({
-  selector: 'app-login',
+  selector: 'auth-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })

@@ -4,14 +4,14 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/Auth.service';
 
 @Component({
-  selector: 'app-create-user',
+  selector: 'auth-create-user',
   templateUrl: './create-user.component.html',
   styleUrl: './create-user.component.css'
 })
 export class CreateUserComponent {
 
 
-/*------------------- JEAN----------------------------- */
+
   dataPersona: datosPersona={
     nombres: '',
     apellidos: '',
@@ -38,7 +38,7 @@ export class CreateUserComponent {
       this.authservice.saveUsuario(arrayPersona)
 
       localStorage.removeItem('temporal')
-      this.router.navigate(['/iniciar-sesion']);
+      this.router.navigate(['auth/login']);
     }
   }
 

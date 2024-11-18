@@ -1,4 +1,13 @@
 /* Estilos para la cabecera */
+.body-container {
+    margin: 0;
+    width: 100vw;
+    height: 80vh;
+    
+    background: radial-gradient(circle at top left, #e73847, #a8dadb, #457b9d, #1d3557);
+}
+
+
 .header {
     background-color: #2e69a3;
     height: 80px;
@@ -20,12 +29,7 @@
 }
 
 /* Estilos para el contenedor principal */
-.body-container {
-    width: 100vw;
-    height: 80vh;
-    margin: 0;
-    background: radial-gradient(circle at top left, #e73847, #a8dadb, #457b9d, #1d3557);
-}
+
 
 .espaciado{
     height: 20px;

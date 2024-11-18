@@ -1,13 +1,3 @@
-#body{
-  margin: 0;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(to right, #26627c, #508ea3, #255164);
-  font-family: Arial, sans-serif;
-}
-
 .contenedor {
   display: flex;
   background-color: white;

@@ -10,6 +10,7 @@ import { HomeModule } from './home/home.module';
 import { AuthModule } from './auth/auth.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CheckoutModule } from './checkout/checkout.module';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
     HomeModule,
     AuthModule,
     ReactiveFormsModule,
-    HttpClientModule    
+    HttpClientModule ,
+    CheckoutModule   
   ],
   providers: [],
   bootstrap: [AppComponent]

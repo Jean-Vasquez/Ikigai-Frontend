@@ -4,7 +4,7 @@
         </div>
         <div class="formulario-login">
             <div class="header">
-                <button class="btn-regresar" routerLink="/registrar-cliente">&#8592;</button>
+                <button class="btn-regresar" [routerLink]="'auth/register'">&#8592;</button>
                 <h1 class="title"><strong>Crear cuenta</strong></h1>
             </div>
             <form (ngSubmit)="DatosFijos()">

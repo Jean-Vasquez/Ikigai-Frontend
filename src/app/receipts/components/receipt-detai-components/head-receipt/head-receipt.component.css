@@ -1,0 +1,38 @@
+
+.encabezado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.5);
+    
+}
+
+.datos-tienda {
+    text-align: center;
+    flex-grow: 1;
+}
+
+.datos-boleta {
+    text-align: center;
+    flex-grow: 1;
+    position: relative;
+    border: 4px solid black;
+}
+
+.datos-boleta .logo {
+    /* background-image: url('../inicio/image/logoIkigai.png'); */
+    position: absolute;
+    top: 0;
+    left: 345px;
+    width: 100px; /* Define el ancho del logo */
+    height: 100px;
+    transform: translateY(-20);
+}
+
+.logo{
+    width: 50px;
+    margin-right: 0px; 
+    
+}
