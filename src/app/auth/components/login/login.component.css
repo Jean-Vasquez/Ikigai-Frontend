@@ -46,7 +46,7 @@
 }
 
 .grupo-formulario input {
-    width: 80%;
+    width: 102%;
     padding: 15px; /* Aumentar el padding para inputs más altos */
     border: 1px solid #ccc;
     border-radius: 30px; /* Hacer los inputs ovalados */
@@ -61,29 +61,11 @@
     border-radius: 10px; /* Botón con esquinas menos ovaladas */
     cursor: pointer;
     font-size: 24px; /* Aumentar el tamaño de la fuente */
-    width: 38%; /* Hacer el botón más grande */
+    width: 42%; /* Hacer el botón más grande */
     margin: 50px auto; /* Centrar el botón y agregar espacio superior */
     display: block; /* Asegurar que el botón sea un bloque centrado */
 }
 .btn:hover {
     background-color: #fc573a;
-}
-.enlace-registro {
-    margin-top: 20px;
-    text-align: center;
-    display: flex; 
-    justify-content: center; 
-    align-items: center;
-}
-.enlace-registro span {
-    margin-right: 10px; /* Espacio entre el texto y el enlace */
-    margin-bottom: 0; /* Quitar margen inferior si hay alguno */
-}
-.enlace-registro a {
-    color: #0a0a0a;
-    text-decoration: none;
-    font-weight: bold; /* Hacer el texto del enlace más destacado */
-}
-.enlace-registro a:hover {
-    text-decoration: underline;
+    justify-content: center;
 }
