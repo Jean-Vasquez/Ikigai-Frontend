@@ -1,53 +1,140 @@
 <div class="contenedor">
-    
-        <div class="imagen"></div>
-        <form class="formulario"  (ngSubmit)="DatosTemp()" >
-            <button class="btn-regresar" routerLink="/login">&#8592;</button>
-            <h1 class="title"><strong>Regístrate</strong></h1>
-            <div class="campos">
-                <div class="campo">
-                    <label>NOMBRES</label>
-                    <input class="in" [(ngModel)]="dataPersona.nombres" name="nombres" type="text">
-                </div>
+  <!-- Imagen decorativa -->
+  <div class="imagen"></div>
 
-                <div class="campo">
-                    <label>APELLIDOS</label>
-                    <input class="in" [(ngModel)]="dataPersona.apellidos"name="apellidos" type="text">
-                </div>
+  <!-- Formulario de registro -->
+  <form class="formulario" (ngSubmit)="DatosTemp()">
+    <!-- Botón para regresar -->
+    <button class="btn-regresar" routerLink="/login" aria-label="Regresar al inicio de sesión">&#8592;</button>
 
-                <div class="campo">
-                    <label>TIPO DE DOCUMENTO</label>
-                    <select class="in"  [(ngModel)]="dataPersona.tipodoct" name="tipodoct">
-                        <option value="dni">DNI</option>
-                        <option value="pasaporte">Pasaporte</option>
-                        <option value="carnet">Carnet de extranjería</option>
-                    </select>
-                </div>
-                <div class="campo">
-                    <label>NÚMERO DE DOCUMENTO</label>
-                    <input class="in" [(ngModel)]="dataPersona.numerodoct"  name="numerodoct" type="text">
-                </div>
-                <div class="campo">
-                    <label>FECHA DE NACIMIENTO</label>
-                    <input class="in"  [(ngModel)]="dataPersona.fechanaci" name="fechanaci" type="date">
-                </div>
-                <div class="campo">
-                    <label>DIRECCIÓN</label>
-                    <input class="in"  [(ngModel)]="dataPersona.direccion" name="direccion" type="text">
-                </div>
-                <div class="campo">
-                    <label>CORREO ELECTRÓNICO</label>
-                    <input class="in" [(ngModel)]="dataPersona.correo" name="correo" type="email">
-                </div>
-                <div class="campo">
-                    <label>TELÉFONO</label>
-                    <input class="in"  [(ngModel)]="dataPersona.telefono" name="telefono" type="tel">
-                </div>
-            </div>
-            <div class="button"  >
-                <button class="btn" type="submit" ><strong>SIGUIENTE</strong></button>
-            </div>
-            
-        </form>
-    
+    <!-- Título -->
+    <h1 class="title"><strong>Regístrate</strong></h1>
+
+    <!-- Campos del formulario -->
+    <div class="campos">
+      <!-- Nombres -->
+      <div class="campo">
+        <label for="nombres">NOMBRES</label>
+        <input
+          id="nombres"
+          class="in"
+          [(ngModel)]="dataPersona.nombres"
+          name="nombres"
+          type="text"
+          placeholder="Ingresa tus nombres"
+          required
+        />
+      </div>
+
+      <!-- Apellidos -->
+      <div class="campo">
+        <label for="apellidos">APELLIDOS</label>
+        <input
+          id="apellidos"
+          class="in"
+          [(ngModel)]="dataPersona.apellidos"
+          name="apellidos"
+          type="text"
+          placeholder="Ingresa tus apellidos"
+          required
+        />
+      </div>
+
+      <!-- Tipo de documento -->
+      <div class="campo">
+        <label for="tipodoct">TIPO DE DOCUMENTO</label>
+        <select
+          id="tipodoct"
+          class="in"
+          [(ngModel)]="dataPersona.tipodoct"
+          name="tipodoct"
+          required
+        >
+          <option value="" disabled selected>Selecciona tipo de doc</option>
+          <option value="dni">DNI</option>
+          <option value="pasaporte">Pasaporte</option>
+          <option value="carnet">Carnet de extranjería</option>
+        </select>
+      </div>
+
+      <!-- Número de documento -->
+      <div class="campo">
+        <label for="numerodoct">NÚMERO DE DOCUMENTO</label>
+        <input
+          id="numerodoct"
+          class="in"
+          [(ngModel)]="dataPersona.numerodoct"
+          name="numerodoct"
+          type="text"
+          placeholder="Ingresa un num de doc"
+          required
+        />
+      </div>
+
+      <!-- Fecha de nacimiento -->
+      <div class="campo">
+        <label for="fechanaci">FECHA DE NACIMIENTO</label>
+        <input
+          id="fechanaci"
+          class="in"
+          [(ngModel)]="dataPersona.fechanaci"
+          name="fechanaci"
+          type="date"
+          required
+        />
+      </div>
+
+      <!-- Dirección -->
+      <div class="campo">
+        <label for="direccion">DIRECCIÓN</label>
+        <input
+          id="direccion"
+          class="in"
+          [(ngModel)]="dataPersona.direccion"
+          name="direccion"
+          type="text"
+          placeholder="Ingresa tu dirección"
+        />
+      </div>
+
+      <!-- Correo electrónico -->
+      <div class="campo">
+        <label for="correo">CORREO ELECTRÓNICO</label>
+        <input
+          id="correo"
+          class="in"
+          [(ngModel)]="dataPersona.correo"
+          name="correo"
+          type="email"
+          placeholder="Ingresa tu correo"
+          required
+        />
+      </div>
+
+      <!-- Teléfono -->
+      <div class="campo">
+        <label for="telefono">TELÉFONO</label>
+        <input
+          id="telefono"
+          class="in"
+          [(ngModel)]="dataPersona.telefono"
+          name="telefono"
+          type="tel"
+          placeholder="Ingresa tu teléfono"
+          required
+        />
+      </div>
+    </div>
+
+    <div class="enlace-registro">
+      <span>¿Ya tienes una cuenta?</span>
+      <a routerLink="/auth/login">    Inicia Sesión</a>
+  </div>
+
+
+    <!-- Botón de envío -->
+    <div class="button">
+      <button class="btn" type="submit"><strong>SIGUIENTE</strong></button>
+    </div>
+  </form>
 </div>
