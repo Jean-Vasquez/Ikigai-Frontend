@@ -1,20 +1,29 @@
+/* Contenedor principal */
 .contenedor {
   display: flex;
   background-color: white;
-  border-radius: 0px;
+  border-radius: 10px; /* Esquinas redondeadas */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   overflow: hidden;
-  width: 850px;
-  height: 600px;
-  max-width: 90%;
+  width: 90%;
+  max-width: 931px;
+  height: auto;
+  min-height: 500px;
   position: relative;
-}
+  margin: 0 auto;
+ }
 
+/* Imagen decorativa */
 .imagen {
-  flex: 0.9;
-  background-image: url('../../../../assets/imagenes/iniciofondo.png');  /* Ruta de la imagen  */
+  flex: 0.8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-image: url('../../../../assets/imagenes/iniciofondo.png');
   background-size: cover;
   background-position: center;
+  min-height: 250px;
 }
 
 .imagen img {
@@ -23,79 +32,143 @@
   object-fit: cover;
 }
 
+/* Formulario */
 .formulario {
   flex: 1;
-  padding: 40px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
 }
 
+/* Botón de regresar */
 .btn-regresar {
   position: absolute;
-  top: 30px;
+  top: 20px;
   left: 20px;
   background-color: #F56C5E;
   color: white;
-  padding: 10px 15px;
+  padding: 8px 12px; /* Reducido */
   border: none;
-  border-radius: 100px  ;
+  border-radius: 50%;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 16px; /* Reducido */
+  z-index: 10;
 }
 
 .btn-regresar:hover {
   background-color: #fc573a;
 }
 
+/* Título */
 .title {
   width: 100%;
   text-align: center;
-  margin-bottom: 20px;
-  font-size: 45px;
-}
-
-.campos {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.campo {
-  flex: 1 1 calc(50% - 10px); /* Ajuste para que los campos ocupen la mitad del contenedor */
-  display: flex;
-  flex-direction: column;
-}
-
-.campo label {
-  margin-bottom: 8px;
+  margin-bottom: 15px; /* Reducido */
+  font-size: 28px; /* Reducido */
   font-weight: bold;
 }
 
-.campo input, .campo select {
-  height: 40px;
-  border-radius: 30px;
-  border: 1px solid #ccc;
-  background-color: #DFDFDF; /* Color plomo */
-  padding: 0 15px;
-  width: 90%; /* Asegura que ocupen todo el ancho disponible */
+/* Campos del formulario */
+.campos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px; /* Reducido */
+  justify-content: space-between;
 }
 
+/* Campo individual */
+.campo {
+  flex: 1 1 calc(50% - 10px);
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+}
+
+/* Etiquetas */
+.campo label {
+  margin-bottom: 6px; /* Reducido */
+  font-weight: bold;
+  font-size: 14px; /* Reducido */
+}
+
+/* Inputs y selects */
+.campo input,
+.campo select {
+  height: 35px; /* Reducido */
+  border-radius: 30px;
+  border: 1px solid #ccc;
+  background-color: #DFDFDF;
+  padding: 0 15px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Botón enviar */
 .btn {
   background-color: #F56C5E;
   color: white;
-  padding: 14px; /* Aumentar el padding para un botón más alto */
+  padding: 12px 18px; /* Reducido */
   border: none;
-  border-radius: 10px; /* Botón con esquinas menos ovaladas */
+  border-radius: 10px;
   cursor: pointer;
-  font-size: 24px; /* Aumentar el tamaño de la fuente */
-  width: 38%; /* Hacer el botón más grande */
-  margin: 50px auto; /* Centrar el botón y agregar espacio superior */
-  display: block; /* Asegurar que el botón sea un bloque centrado */
+  font-size: 16px; /* Reducido */
+  width: 60%;
+  margin: 25px auto; /* Reducido */
+  display: block;
 }
 
 .btn:hover {
   background-color: #fc573a;
 }
 
+/* Responsivo */
+@media screen and (max-width: 768px) {
+  .contenedor {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .imagen {
+    flex: none;
+    height: 200px;
+  }
+
+  .formulario {
+    padding: 20px;
+  }
+
+  .title {
+    font-size: 24px; /* Reducido para pantallas pequeñas */
+  }
+
+  .campo {
+    flex: 1 1 100%;
+  }
+
+  .btn {
+    width: 80%;
+    font-size: 14px; /* Reducido */
+  }
+}
+
+.enlace-registro {
+  margin-top: 20px;
+  text-align: center;
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+}
+.enlace-registro span {
+  margin-right: 10px; /* Espacio entre el texto y el enlace */
+  margin-bottom: 0; /* Quitar margen inferior si hay alguno */
+}
+.enlace-registro a {
+  color: #0a0a0a;
+  text-decoration: none;
+  font-weight: bold; /* Hacer el texto del enlace más destacado */
+}
+.enlace-registro a:hover {
+  text-decoration: underline;
+}
