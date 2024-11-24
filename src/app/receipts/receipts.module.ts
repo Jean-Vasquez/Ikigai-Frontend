@@ -5,8 +5,8 @@ import { ReceiptdetailPageComponent } from './pages/receiptdetail-page/receiptde
 import { HeadReceiptComponent } from './components/receipt-detai-components/head-receipt/head-receipt.component';
 import { CustomerDataComponent } from './components/receipt-detai-components/customer-data/customer-data.component';
 import { TableDetailComponent } from './components/receipt-detai-components/table-detail/table-detail.component';
-import { RouterModule } from '@angular/router';
 import { ReceiptRoutingModule } from './receipts-routing.module';
+import { ReceiptlistPageComponent } from './pages/receiptlist-page/receiptlist-page.component';
 
 
 
@@ -16,7 +16,8 @@ import { ReceiptRoutingModule } from './receipts-routing.module';
     ReceiptdetailPageComponent,
     HeadReceiptComponent,
     CustomerDataComponent,
-    TableDetailComponent
+    TableDetailComponent,
+    ReceiptlistPageComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +28,8 @@ import { ReceiptRoutingModule } from './receipts-routing.module';
     ReceiptdetailPageComponent,
     HeadReceiptComponent,
     CustomerDataComponent,
-    TableDetailComponent
+    TableDetailComponent,
+    ReceiptlistPageComponent
   ]
 })
 export class ReceiptsModule { }
