@@ -7,9 +7,6 @@ import { AuthService } from '../../../auth/services/Auth.service';
   styleUrl: './nav.component.css'
 })
 export class NavComponent{
-constructor(private authService:AuthService){}
-  logout(){
-    this.authService.logout()
-  }
+
   
 }
