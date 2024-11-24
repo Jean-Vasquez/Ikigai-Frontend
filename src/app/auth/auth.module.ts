@@ -31,6 +31,7 @@ import { RegisterPageComponent } from './pages/register-page/register-page.compo
     HttpClientModule,
     FormsModule,
     AuthRoutingModule,
+    ReactiveFormsModule
   ], exports:[
     LoginComponent,
     RegisterComponent,

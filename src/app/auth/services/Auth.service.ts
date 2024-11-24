@@ -1,8 +1,14 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { filter, Observable } from 'rxjs';
-import { datosPersona } from '../interfaces/datosPersona';
+import { catchError, filter, map, Observable, of, tap, throwError } from 'rxjs';
+;
+import { environment } from '../../../environments/environments';
+import { estadoLogin, LoginRespuesta, User } from '../interfaces';
+
+
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -11,59 +17,61 @@ export class AuthService {
   private rutas = ['/iniciar-sesion','/registrar-cliente','/crear-usuario']
 
     public mostrarNavFooter = false
-  constructor( private http: HttpClient, private router:Router) { 
+  
+     private  baseUrl : string = environment.baseURL
+    private http = inject(HttpClient)
 
-    this.router.events.pipe(
+    
+    private _usuario= signal<User|null>(null)
+    private _estadoLogin = signal<estadoLogin>(estadoLogin.comprobando)
+    
+
+    
+    public usuario = computed( ()=> this._usuario);
+    
+    public estadoLogin = computed(() => this._estadoLogin);
+
+    
+  login(usuario:string, contrasena:string): Observable<boolean>{
+    
+    const url = `${this.baseUrl}/usuario/login`
+    const body = {usuario, contrasena};
+
+    return  this.http.post<LoginRespuesta>(url,body)
+    .pipe(
+      tap( ({user, token}) => {
+        this._usuario.set(user);
+        this._estadoLogin.set(estadoLogin.autenticado)
+        localStorage.setItem('token', token)
+      }),
+      map( ()=> true),
+
+      
+      catchError( err => throwError (() => err.error.message)
+      )
+    )
+   
+    
+  }
+  
+ 
+
+
+
+
+
+
+
+      
+/*     constructor(private router:Router,) { 
+
+this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(()=>{
       this.mostrarNavFooter = this.rutas.includes(this.router.url)
-    })
-
+    }) 
   }
-
-
-  private jsonUrl='../../../../assets/users/users.json'  
-  private localStorageKey = 'combinedData';
-
-  getCredenciales(): Observable<any>{
-    return this.http.get<any>(this.jsonUrl)
-  }
-
-/* ------------------------------------------- */
-
-  private key = "cliente"
-   userLogin?:datosPersona
-
-
-   /* Obtiene los datos del localStorage o un array vacío
-   para los DatosPersona[] */
-  getUsuarioStorage():datosPersona[]{
-    const storageData = localStorage.getItem(this.key)
-    return storageData ? JSON.parse(storageData) : []
-  }
-
-  /* Asigna a data el valor del array, luego 
-  introduce dataPersona que será la nueva persona, y luego
-  lo guarda en el localStorage */
-  saveUsuario(dataPersona:datosPersona){
-    const data = this.getUsuarioStorage();
-    data.push(dataPersona)    
-    localStorage.setItem(this.key,JSON.stringify(data))
-    
-  }
-
-
-  login(usuario:string, contrasena: string):boolean{
-    const user = this.getUsuarioStorage()
-    const userF =user.find(x => x.usuario === usuario && x.contrasena === contrasena) 
-    this.userLogin = userF
-    return !!userF
-  }
-
-  /* Remueve el temporal del inicio de sesion del localStorage */
-  logout(){
-    localStorage.removeItem(this.key)
-  }
+ */
 
 
 }

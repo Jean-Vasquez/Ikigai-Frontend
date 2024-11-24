@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import { FormGroup,FormBuilder,Validators } from '@angular/forms';
+import { Component, inject, Inject } from '@angular/core';
+import { FormGroup,FormBuilder,Validators, FormControl } from '@angular/forms';
 import { AuthService } from '../../services/Auth.service';
 import { Router } from '@angular/router';
-import { datosPersona } from '../../interfaces/datosPersona';
+import Swal from 'sweetalert2'
 @Component({
   selector: 'auth-login',
   templateUrl: './login.component.html',
@@ -10,57 +10,35 @@ import { datosPersona } from '../../interfaces/datosPersona';
 })
 export class LoginComponent {
 
-  loginFormulario : FormGroup;
-  loginexitoso = false
- 
-  constructor(
-    private fb: FormBuilder,
-    private authService:AuthService,
-    private router:Router
-  ){
+  constructor(){}
 
-    this.loginFormulario = this.fb.group({
+  private fb = inject(FormBuilder);
+  private authService = inject(AuthService)
+  private router = inject(Router)
 
-      usuario : ['', Validators.required],
-      contrasena: ['',Validators.required]
-
-    })
-
-  }
+  public myForm: FormGroup = this.fb.group({
+    usuario   : ['Jean123456', [Validators.required,Validators.minLength(8)]],
+    contrasena: ['60692466',[Validators.required, Validators.minLength(6)]]
+  });
 
 
-  onLogin(){
-
-    const{usuario,contrasena} = this.loginFormulario.value;
-
-
-
-    this.authService.getCredenciales().subscribe(
-      data=>{
-
-        if(data.usuario === usuario && data.contrasena === contrasena){
-          console.log("Iniciando Sesión..."),
-          this.loginexitoso = true
-          if(this.loginexitoso){
-            this.router.navigate(['/index'])
-          }
-        }
-        else{
-          console.log("Datos incorrectos..")
-        }
-      })
-    }
+  login(){
     
-    Usuario:datosPersona={
-      usuario:'',
-      contrasena:''
-    }    
+    const {usuario, contrasena} = this.myForm.value
 
-      sendLogin(){
-      const validacion = this.authService.login(this.Usuario.usuario!, this.Usuario.contrasena!)
-      if (validacion === true) this.router.navigate(['/index'])  
-      }
-
+    this.authService.login(usuario,contrasena)
+    .subscribe({
+      next: () => this.router.navigateByUrl('/index'),
+      error: (message) => {
+        Swal.fire('Error', message , 'error')
+      } 
+    }
+      
+    
+    )
+    
+    
+  }
       
 
   }
