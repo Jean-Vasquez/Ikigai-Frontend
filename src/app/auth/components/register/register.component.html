@@ -3,7 +3,7 @@
     <div class="imagen"></div>
   
     <!-- Formulario de registro -->
-    <form class="formulario" (ngSubmit)="DatosTemp()">
+    <form class="formulario" >
       <!-- Botón para regresar -->
       <button class="btn-regresar" routerLink="/login" aria-label="Regresar al inicio de sesión">&#8592;</button>
   
@@ -18,7 +18,7 @@
           <input
             id="nombres"
             class="in"
-            [(ngModel)]="dataPersona.nombres"
+           
             name="nombres"
             type="text"
             placeholder="Ingresa tus nombres"
@@ -32,7 +32,7 @@
           <input
             id="apellidos"
             class="in"
-            [(ngModel)]="dataPersona.apellidos"
+            
             name="apellidos"
             type="text"
             placeholder="Ingresa tus apellidos"
@@ -46,7 +46,7 @@
           <select
             id="tipodoct"
             class="in"
-            [(ngModel)]="dataPersona.tipodoct"
+           
             name="tipodoct"
             required
           >
@@ -63,7 +63,7 @@
           <input
             id="numerodoct"
             class="in"
-            [(ngModel)]="dataPersona.numerodoct"
+           
             name="numerodoct"
             type="text"
             placeholder="Ingresa un num de doc"
@@ -77,7 +77,7 @@
           <input
             id="fechanaci"
             class="in"
-            [(ngModel)]="dataPersona.fechanaci"
+       
             name="fechanaci"
             type="date"
             required
@@ -90,7 +90,7 @@
           <input
             id="direccion"
             class="in"
-            [(ngModel)]="dataPersona.direccion"
+            
             name="direccion"
             type="text"
             placeholder="Ingresa tu dirección"
@@ -103,7 +103,7 @@
           <input
             id="correo"
             class="in"
-            [(ngModel)]="dataPersona.correo"
+          
             name="correo"
             type="email"
             placeholder="Ingresa tu correo"
@@ -117,7 +117,7 @@
           <input
             id="telefono"
             class="in"
-            [(ngModel)]="dataPersona.telefono"
+           
             name="telefono"
             type="tel"
             placeholder="Ingresa tu teléfono"
