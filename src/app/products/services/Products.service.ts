@@ -3,6 +3,8 @@ import { Observable, of } from 'rxjs';
 import { productsNewArray } from '../interfaces/productsNewArray';
 import { productsListArray } from '../interfaces/productsListArray';
 import { v4 as uuid} from 'uuid'
+import { environment } from '../../../environments/environments';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,10 +14,10 @@ export class ProductsService {
   private cart: any[] = [];
   
   private products: productsListArray[] = []; // Usa productsListArray para almacenar todos los detalles
-  private newProducts : productsNewArray[] = [];
+  
+  private baseUrl = `${environment.baseURL}/producto`; //url para conexion con la bd
 
-
-  constructor() {
+  constructor(private http: HttpClient) {
     this.loadProducts();
     this.loadCart();  // Cargar el carrito si es necesario
   }
@@ -88,57 +90,46 @@ export class ProductsService {
 
   }
 
-
-  /* Retorna la lista de Productos */
-  public getProducts(): productsListArray[] {
-    return this.products;
+  // Obtener todos los productos
+  getProducts(): Observable<productsListArray[]> {
+    return this.http.get<productsListArray[]>(this.baseUrl);
   }
   
 
-  /* Añade un nuevo producto a la lista de productos y 
-  guarda el localStorage */
-  addProduct(product: productsListArray): void {
-    this.products.push(product);
-    this.saveProducts();
+   // Crear un nuevo producto
+   addProduct(product: productsListArray): Observable<productsListArray> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' }); // Configurar header
+  
+    return this.http.post<productsListArray>(this.baseUrl, product)
   }
 
-  /* Guarda productos en localStorage*/
-  private saveProducts(): void {
-    localStorage.setItem('productos', JSON.stringify(this.products));
+  // Obtener producto por ID
+  getProductById(term: string): Observable<productsListArray> {
+    return this.http.get<productsListArray>(`${this.baseUrl}/${term}`);
   }
 
 
   private loadProducts(): void {
-    const savedProducts = localStorage.getItem('productos');
-    if (savedProducts) {
-      this.products = JSON.parse(savedProducts) as productsListArray[];
-    } else {
-      // Aquí puedes agregar productos predeterminados si es necesario
-      this.products = [
-        { id: '1', nombre: 'Goku Niño sentado en nube voladora', imgUrl: 'images/Goku_niño.jpg', precio: 30.00, categoria: 'Anime', descripcion: 'Descripción de Goku Niño', presentacion: 'Figura', stock: 10 },
-        { id: '2', nombre: 'Goku Niño', imgUrl: 'images/Goku_niño.jpg', precio: 30.00, categoria: 'Anime', descripcion: 'Descripción de Goku Niño', presentacion: 'Figura', stock: 10 },
-        // Agrega más productos si es necesario
-      ];
-      this.saveProducts();
-    }
+    this.getProducts().subscribe(
+      (products) =>{
+        this.products = products;
+      }, (error) => {
+        console.error('Error al cargar los productos desde el servidor', error);
+      }
+    );
   }
 
-  /* De acuerdo al id del parametro, filtra el producto y 
-  lo guarda el localStorage */
-  removeProduct(productId: string): void {
-    this.products = this.products.filter(product => product.id !== productId);
-    this.saveProducts();
+   // Eliminar un producto por ID
+   deleteProduct(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
 
-  /*De acuerdo al id del producto, busca para modificar el que
-  tenga el mismo id, y luego guarda en el localStorage */
-  updateProduct(updatedProduct: productsListArray): void {
-    const index = this.products.findIndex(product => product.id === updatedProduct.id);
-    if (index !== -1) {
-      this.products[index] = updatedProduct;
-      this.saveProducts();
-    }
+  // Actualizar un producto
+  updateProduct(term: string, product: productsListArray): Observable<productsListArray> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.patch<productsListArray>(`${this.baseUrl}/${term}`, product);
   }
+  
 
   /* Obtiene la array cart */
   public getCart(): any[] {
@@ -175,38 +166,38 @@ export class ProductsService {
 
 
 /* -------------------AGREGAR PRODUCTOS NUEVOS---------------------- */
-  public agregarProductos(producto: productsListArray){
+public agregarProductos(producto: productsListArray){
 
-    const NuevoProducto: productsListArray =  {
-      id: uuid(),
-      nombre:       producto.nombre,
-      categoria:    producto.categoria,
-      descripcion:  producto.descripcion,
-      imgUrl :      producto.imgUrl,
-      precio:       producto.precio,
-      presentacion: producto.presentacion,
-      stock:        producto.stock
-        
+  const NuevoProducto: productsListArray =  {
+    id: uuid(),
+    nombre:       producto.nombre,
+    categoria:    producto.categoria,
+    descripcion:  producto.descripcion,
+    imgUrl :      producto.imgUrl,
+    precio:       producto.precio,
+    presentacion: producto.presentacion,
+    stock:        producto.stock
+      
+  }
+
+  try {
+    if(this.products.push(NuevoProducto)){
+      this.guardarProductoStorage()
     }
-  
-    try {
-      if(this.products.push(NuevoProducto)){
-        this.guardarProductoStorage()
-      }
-    } catch (error) {
-      console.log(`Error en agregarProductos: ${error}`)
-    }
-
+  } catch (error) {
+    console.log(`Error en agregarProductos: ${error}`)
   }
 
-  public guardarProductoStorage(){
-    localStorage.setItem('productos', JSON.stringify(this.products))
-  }
+}
+
+public guardarProductoStorage(){
+  localStorage.setItem('productos', JSON.stringify(this.products))
+}
 
 
-  public obtenerPorductos(){
-    return this.products
-  }
+public obtenerPorductos(){
+  return this.products
+}
 
 
 /* -------------------AGREGAR PRODUCTOS NUEVOS---------------------- */

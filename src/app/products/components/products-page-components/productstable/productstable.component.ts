@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { productsListArray } from '../../../interfaces/productsListArray';
 import { ProductsService } from '../../../services/Products.service';
 import { v4 as uuid} from 'uuid'
@@ -7,11 +7,9 @@ import { v4 as uuid} from 'uuid'
   templateUrl: './productstable.component.html',
   styleUrl: './productstable.component.css'
 })
-export class ProductstableComponent {
-
-  constructor(private productsService:ProductsService){}
+export class ProductstableComponent implements OnInit {
   isEditing: boolean = false;
-  products : productsListArray[] = []
+  products : productsListArray[] = [];
   newproducts: productsListArray=
   {
     id:uuid(),
@@ -24,18 +22,33 @@ export class ProductstableComponent {
     stock: 0
 }
 
-  ngOnInit(){
-    this.products = this.productsService.getProducts()
+  constructor(private productsService: ProductsService){}
+
+  ngOnInit(): void {
+    this.productsService.getProducts().subscribe(
+      (data) => {
+        this.products = data; //asignar productos a la lista
+      },(error) => {
+        console.error('Error al obtener productos:',error)
+      }
+    );
   }
 
-  removeProduct(productId:string):void{
-    this.productsService.removeProduct(productId)
-    this.products = this.productsService.getProducts()
+  deleteProduct(productId:string):void{
+    //eliminar el producto a traves del service
+    this.productsService.deleteProduct(productId).subscribe(
+      () => {
+        //Actualizar la lista de productos después de eliminar
+        this.products = this.products.filter(product => product.id !== productId);
+      }, (error) => {
+        console.error('Error al eliminar producto:',error)
+      }
+    );
   }
   
 
-  editProduct(product: productsListArray) {
-    this.newproducts = { ...product }; 
+  editProduct(product: productsListArray): void {
+    this.newproducts = { ...product }; //crear una copia para edición
     this.isEditing = true;
   }
 }
