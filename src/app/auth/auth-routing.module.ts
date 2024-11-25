@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { CreateuserPageComponent } from './pages/createuser-page/createuser-page.component';
+import { FormsModule } from '@angular/forms';
 
 export const routes: Routes = [
     {
@@ -25,7 +26,7 @@ export const routes: Routes = [
 ]
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
+    imports: [RouterModule.forChild(routes),FormsModule],
     exports: [RouterModule]
   })
   export class AuthRoutingModule{}
