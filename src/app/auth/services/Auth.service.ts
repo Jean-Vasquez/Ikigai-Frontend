@@ -7,6 +7,7 @@ import { environment } from '../../../environments/environments';
 import { estadoLogin, LoginRespuesta, User } from '../interfaces';
 
 
+import { UserRegister } from '../../auth/interfaces/user.interface';
 
 
 @Injectable({
@@ -50,10 +51,28 @@ export class AuthService {
       catchError( err => throwError (() => err.error.message)
       )
     )
-   
+
     
   }
   
+  //creación de variables para datos del usuario
+
+  user!: UserRegister;
+  persona!: any;
+  datosUser(usuario: UserRegister){
+    this.user = usuario
+  }
+//creación de variables para datos de una persona
+  datosPersona(usuario: any) {
+    this.persona = usuario
+    this.persona.idpersona = this.user
+    this.registrar();
+  }
+//para enviar los datos al api
+  async registrar(){
+    const url = `${this.baseUrl}/usuario/registro`
+    const result = await this.http.post<any>(url, this.persona).toPromise()
+  }
  
 
 
