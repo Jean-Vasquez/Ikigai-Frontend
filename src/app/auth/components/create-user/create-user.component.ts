@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/Auth.service';
+import { datosUsuario } from '../../interfaces/data/datos-usuario.interface';
 
 
 @Component({
@@ -13,24 +14,24 @@ export class CreateUserComponent {
     private readonly authService: AuthService
   ) { }
 //creación de objeto vacía (persona)
-    persona: any = {
+    usuario: datosUsuario = {
       usuario: '',
       contrasena: '',
-      rol : "administrador",
+      rol: 'cliente',
       idpersona: {
         nombres: '',
         apellidos: '',
-        tipoDocumento: '',
+        tipodoc: '',
         numerodoct: '',
-        fechanaci: '',
+        fechanaci: new Date(),
         direccion: '',
         correo: '',
         telefono: '',  
       }
     }
 //envía los datos al servicio
-    register(){
-    this.authService.datosPersona(this.persona); 
+    createUser(){
+    this.authService.datosUsuario(this.usuario); 
     }
 
   }

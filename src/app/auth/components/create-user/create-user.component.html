@@ -12,17 +12,17 @@
                 <label for="usuario">
                     <i class="bi bi-person-circle"></i> NOMBRE DE USUARIO
                 </label>
-                <input type="text"  id="usuario" name="usuario" [(ngModel)]="persona.usuario" required>
+                <input type="text"  id="usuario" name="usuario" [(ngModel)]="usuario.usuario" required>
             </div>
             <div class="grupo-formulario">
                 <label for="contrasena">
                     <i class="bi bi-lock-fill"></i> CONTRASEÑA
                 </label>
-                <input type="password" id="contrasena" name="contrasena" [(ngModel)]="persona.contrasena" required>
+                <input type="password" id="contrasena" name="contrasena" [(ngModel)]="usuario.contrasena" required>
             </div>
             
             <div class="grupo-formulario">
-                <button type="button" class="btn" (click)="register()" ><strong>CREAR</strong></button>
+                <button type="button" class="btn" (click)="createUser()"  [disabled]="!usuario" routerLink="auth/login"><strong>CREAR</strong></button>
             </div>
         </form>
     </div>

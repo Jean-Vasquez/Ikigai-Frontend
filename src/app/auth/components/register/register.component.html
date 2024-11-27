@@ -21,7 +21,7 @@
            
             name="nombres"
             type="text"
-            [(ngModel)]="usuario.nombres" 
+            [(ngModel)]="persona.nombres" 
             placeholder="Ingresa tus nombres"
             required
           />
@@ -36,7 +36,7 @@
             
             name="apellidos"
             type="text"
-            [(ngModel)]="usuario.apellidos"
+            [(ngModel)]="persona.apellidos"
             placeholder="Ingresa tus apellidos"
             required
           />
@@ -48,7 +48,7 @@
           <select
             id="tipodoct"
             class="in"
-            [(ngModel)]="usuario.tipodoc"
+            [(ngModel)]="persona.tipodoc"
             name="tipodoct"
             required
           >
@@ -65,7 +65,7 @@
           <input
             id="numerodoct"
             class="in"
-            [(ngModel)]="usuario.numerodoct"
+            [(ngModel)]="persona.numerodoct"
             name="numerodoct"
             type="text"
             placeholder="Ingresa un num de doc"
@@ -79,7 +79,7 @@
           <input
             id="fechanaci"
             class="in"
-            [(ngModel)]="usuario.fechanaci"
+            [(ngModel)]="persona.fechanaci"
             name="fechanaci"
             type="date"
             required
@@ -92,7 +92,7 @@
           <input
             id="direccion"
             class="in"
-            [(ngModel)]="usuario.direccion"
+            [(ngModel)]="persona.direccion"
             name="direccion"
             type="text"
             placeholder="Ingresa tu dirección"
@@ -105,7 +105,7 @@
           <input
             id="correo"
             class="in"
-            [(ngModel)]="usuario.correo"
+            [(ngModel)]="persona.correo"
             name="correo"
             type="email"
             placeholder="Ingresa tu correo"
@@ -119,7 +119,7 @@
           <input
             id="telefono"
             class="in"
-            [(ngModel)]="usuario.telefono"
+            [(ngModel)]="persona.telefono"
             name="telefono"
             type="tel"
             placeholder="Ingresa tu teléfono"
@@ -136,7 +136,7 @@
   
       <!-- Botón de envío -->
       <div class="grupo-formulario">
-        <a class="btn btn-dark" (click)="enviarUser()"  routerLink="/auth/create-user">
+        <a class="btn btn-dark" (click)="createPerson()"  routerLink="/auth/create-user">
           SIGUIENTE
          </a>
         

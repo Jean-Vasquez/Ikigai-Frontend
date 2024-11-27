@@ -1,7 +1,8 @@
 
 import { Component  } from '@angular/core';
-import { UserRegister } from '../../interfaces/user.interface';
+import { datosPersona} from '../../interfaces/data/datos-persona.interface';
 import { AuthService } from '../../services/Auth.service';
+
 @Component({
   selector: 'auth-register',
   templateUrl: './register.component.html',
@@ -13,18 +14,19 @@ export class RegisterComponent {
     private readonly authSevice: AuthService
   ){}
 //crear un objeto vacío para almacenar el usuario que se va a registrar
-  usuario: UserRegister = {
+  persona: datosPersona = {
     nombres: '',
     apellidos: '',
     tipodoc: '',
     numerodoct: '',
-    fechanaci: '',
+    fechanaci: new Date(),
     direccion: '',
     correo: '',
     telefono: '',
   }
 //envía el usuario al servicio
-  enviarUser(): void {
-    this.authSevice.datosUser(this.usuario)
+  createPerson(): void {
+    this.authSevice.datosPersona(this.persona)
+    console.log(`Component: ${this.persona}`)
   }
 }

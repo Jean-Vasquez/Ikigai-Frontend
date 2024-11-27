@@ -4,10 +4,12 @@ import { NavigationEnd, Router } from '@angular/router';
 import { catchError, filter, map, Observable, of, tap, throwError } from 'rxjs';
 ;
 import { environment } from '../../../environments/environments';
-import { estadoLogin, LoginRespuesta, User } from '../interfaces';
+import { datosLogin, estadoLogin, respuestaLogin} from '../interfaces';
 
 
-import { UserRegister } from '../../auth/interfaces/user.interface';
+import { datosPersona} from '../interfaces/data/datos-persona.interface';
+import { respuestaUsuario } from '../interfaces/response/respuesta-usuario.interface';
+import { datosUsuario } from '../interfaces/data/datos-usuario.interface';
 
 
 @Injectable({
@@ -15,15 +17,27 @@ import { UserRegister } from '../../auth/interfaces/user.interface';
 })
 export class AuthService {
 
-  private rutas = ['/iniciar-sesion','/registrar-cliente','/crear-usuario']
+  private rutas = ['/auth/login','/auth/register','/auth/create-user']
 
-    public mostrarNavFooter = false
   
-     private  baseUrl : string = environment.baseURL
+  public mostrarNavFooter = false
+
+  constructor(private router:Router) { 
+
+    this.router.events.pipe(
+          filter(event => event instanceof NavigationEnd)
+        ).subscribe(()=>{
+          this.mostrarNavFooter = this.rutas.includes(this.router.url)
+        }) 
+      }
+
+
+  
+    private  baseUrl : string = environment.baseURL
     private http = inject(HttpClient)
 
     
-    private _usuario= signal<User|null>(null)
+    private _usuario= signal<datosLogin|null>(null)
     private _estadoLogin = signal<estadoLogin>(estadoLogin.comprobando)
     
 
@@ -38,7 +52,7 @@ export class AuthService {
     const url = `${this.baseUrl}/usuario/login`
     const body = {usuario, contrasena};
 
-    return  this.http.post<LoginRespuesta>(url,body)
+    return  this.http.post<respuestaLogin>(url,body)
     .pipe(
       tap( ({user, token}) => {
         this._usuario.set(user);
@@ -57,21 +71,24 @@ export class AuthService {
   
   //creación de variables para datos del usuario
 
-  user!: UserRegister;
-  persona!: any;
-  datosUser(usuario: UserRegister){
-    this.user = usuario
+  user!: datosUsuario;
+  persona!: datosPersona;
+  
+  datosPersona(persona : datosPersona ){
+      this.persona = persona
   }
 //creación de variables para datos de una persona
-  datosPersona(usuario: any) {
-    this.persona = usuario
-    this.persona.idpersona = this.user
+  datosUsuario(usuario: datosUsuario) {
+    this.user = usuario
+    this.user.idpersona = this.persona
     this.registrar();
   }
 //para enviar los datos al api
-  async registrar(){
-    const url = `${this.baseUrl}/usuario/registro`
-    const result = await this.http.post<any>(url, this.persona).toPromise()
+  async registrar(): Promise<respuestaUsuario>{
+    const url = `${this.baseUrl}/usuario`
+    const result = await this.http.post<respuestaUsuario>(url, this.user
+    ).toPromise()
+    return result! 
   }
  
 
@@ -82,15 +99,8 @@ export class AuthService {
 
 
       
-/*     constructor(private router:Router,) { 
 
-this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe(()=>{
-      this.mostrarNavFooter = this.rutas.includes(this.router.url)
-    }) 
-  }
- */
+
 
 
 }
