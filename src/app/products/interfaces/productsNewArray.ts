@@ -1,8 +1,7 @@
 export interface productsNewArray {
-    id:string
+    _id?:string
     nombre: string
-    imgUrl: string
+    imagen: string
     precio: number
     categoria: string
-
 }

@@ -1,7 +1,10 @@
+export type ProductWithoutId = Omit<productsListArray, '_id'>;
+
 export interface productsListArray {
-    id:string
+    
+    _id:string
     nombre: string
-    imgUrl: string
+    imagen: string
     categoria: string
     descripcion: string
     presentacion:string

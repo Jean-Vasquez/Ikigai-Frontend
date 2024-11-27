@@ -1,6 +1,6 @@
 <section class="products">
     <div class="product-card" *ngFor="let product of products">
-      <div class="product-image m-auto" [style.background-image]="'url(' + product.imgUrl + ')'"></div>
+      <div class="product-image m-auto" [style.background-image]="'url(' + product.imagen + ')'"></div>
       <p>{{ product.nombre }}</p>
       <p><strong>Categoría:</strong>{{ product.categoria }}</p>
       <p><strong>Precio: S/{{ product.precio }}</strong></p>

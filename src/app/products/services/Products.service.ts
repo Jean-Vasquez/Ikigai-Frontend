@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { productsNewArray } from '../interfaces/productsNewArray';
-import { productsListArray } from '../interfaces/productsListArray';
-import { v4 as uuid} from 'uuid'
+import { productsListArray, ProductWithoutId } from '../interfaces/productsListArray';
 import { environment } from '../../../environments/environments';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -27,7 +27,7 @@ export class ProductsService {
   addToCart(product: productsNewArray) {
 
     /* Asigna a item el resultado del find */
-    const item = this.cart.find((p) => p.id === product.id);
+    const item = this.cart.find((p) => p.id === product._id);
    
     /* Si encuentra un id igual en el array del carrito,
      le suma +1 al producto del carrito*/
@@ -52,9 +52,9 @@ export class ProductsService {
   public getProductsAll(): Observable<productsNewArray[]> {
     // Filtra los productos para que solo devuelvan las propiedades necesarias para productsNewArray
     const newProducts: productsNewArray[] = this.products.map(p => ({
-      id: p.id,
+      _id: p._id,
       nombre: p.nombre,
-      imgUrl: p.imgUrl,
+      imagen: p.imagen,
       precio: p.precio,
       categoria : p.categoria
     }));
@@ -66,9 +66,9 @@ export class ProductsService {
   de newProducts */
   public getProductsNew():Observable<productsNewArray[]>{
     const newProducts:productsNewArray[] = this.products.map( i =>({
-      id: i.id,
+      _id: i._id,
       nombre: i.nombre,
-      imgUrl: i.imgUrl,
+      imagen: i.imagen,
       categoria: i.categoria,
       precio: i.precio
     }))
@@ -84,11 +84,13 @@ export class ProductsService {
   
  /* Permite mostrar el producto seleccionado */
   public getProducId(item : string): productsListArray {
-    const selectProduct = this.products.findIndex(product => product.id === item)
+    const selectProduct = this.products.findIndex(product => product._id === item)
       
        return this.products[selectProduct]
 
   }
+
+ /*----------CRUD PRODUCTOOO---------------*/
 
   // Obtener todos los productos
   getProducts(): Observable<productsListArray[]> {
@@ -97,9 +99,7 @@ export class ProductsService {
   
 
    // Crear un nuevo producto
-   addProduct(product: productsListArray): Observable<productsListArray> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' }); // Configurar header
-  
+   addProduct(product: ProductWithoutId): Observable<productsListArray> {  
     return this.http.post<productsListArray>(this.baseUrl, product)
   }
 
@@ -120,13 +120,12 @@ export class ProductsService {
   }
 
    // Eliminar un producto por ID
-   deleteProduct(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/${id}`);
+   deleteProduct(_id: string): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${_id}`);
   }
 
   // Actualizar un producto
   updateProduct(term: string, product: productsListArray): Observable<productsListArray> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.patch<productsListArray>(`${this.baseUrl}/${term}`, product);
   }
   
@@ -169,15 +168,14 @@ export class ProductsService {
 public agregarProductos(producto: productsListArray){
 
   const NuevoProducto: productsListArray =  {
-    id: uuid(),
+    _id: '',
     nombre:       producto.nombre,
     categoria:    producto.categoria,
     descripcion:  producto.descripcion,
-    imgUrl :      producto.imgUrl,
+    imagen :      producto.imagen,
     precio:       producto.precio,
     presentacion: producto.presentacion,
-    stock:        producto.stock
-      
+    stock:        producto.stock,
   }
 
   try {
