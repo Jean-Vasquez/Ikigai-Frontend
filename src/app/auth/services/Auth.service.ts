@@ -77,19 +77,17 @@ export class AuthService {
   datosPersona(persona : datosPersona ){
       this.persona = persona
   }
-//creación de variables para datos de una persona
-  datosUsuario(usuario: datosUsuario) {
+
+  //para enviar los datos al api
+  async registrar(usuario: datosUsuario): Promise<respuestaUsuario>{
     this.user = usuario
     this.user.idpersona = this.persona
-    this.registrar();
-  }
-//para enviar los datos al api
-  async registrar(): Promise<respuestaUsuario>{
     const url = `${this.baseUrl}/usuario`
     const result = await this.http.post<respuestaUsuario>(url, this.user
     ).toPromise()
     return result! 
   }
+
  
 
 
