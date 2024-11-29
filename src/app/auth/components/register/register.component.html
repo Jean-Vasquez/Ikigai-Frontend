@@ -82,9 +82,11 @@
             [(ngModel)]="persona.fechanaci"
             name="fechanaci"
             type="date"
+            [max]="today" 
             required
           />
         </div>
+        
   
         <!-- Dirección -->
         <div class="campo">
@@ -136,7 +138,7 @@
   
       <!-- Botón de envío -->
       <div class="grupo-formulario">
-        <a class="btn btn-dark" (click)="createPerson()"  routerLink="/auth/create-user">
+        <a class="btn btn-dark" (click)="enviarUser()">
           SIGUIENTE
          </a>
         
