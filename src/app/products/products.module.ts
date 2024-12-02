@@ -27,7 +27,7 @@ import { ProductsComponent } from './components/products-page-components/product
     CategoriesComponent,
     CartComponent,
     PaginationComponent,
-    ProductsComponent
+    ProductsComponent,
   ],
   imports: [
     CommonModule,
