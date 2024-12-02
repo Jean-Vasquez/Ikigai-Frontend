@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { computed, inject, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, OnInit, signal } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { catchError, filter, map, Observable, of, tap, throwError } from 'rxjs';
 import { environment } from '../../../environments/environments';
@@ -15,7 +15,7 @@ import {  respuestaToken } from '../interfaces/response/respuest-token.interface
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService implements OnInit {
 
     private rutas = ['/auth/login','/auth/register','/auth/create-user']
 
@@ -33,10 +33,11 @@ export class AuthService {
     private _usuario= signal<datosLogin|null>(null)
     private _estadoLogin = signal<estadoLogin>(estadoLogin.comprobando)
     private router = inject(Router)
+
+   
             
     constructor() { 
-      this.estadoCheckToken().subscribe()
-
+      
       this.router.events.pipe(
             filter(event => event instanceof NavigationEnd)
           ).subscribe(()=>{
@@ -45,6 +46,10 @@ export class AuthService {
 
 
         }
+
+    ngOnInit(): void {
+      this.CheckStatus().subscribe()  
+    }
       
 
 
@@ -52,7 +57,15 @@ export class AuthService {
     public usuario = computed( ()=> this._usuario());
     
     public estadoLogin = computed(() => this._estadoLogin());
+      
 
+
+    private setAutenticacion(user: datosLogin, token: string){
+      this._usuario.set(user);
+      this._estadoLogin.set(estadoLogin.autenticado)
+      localStorage.setItem('token', token)
+      return true;
+    }  
     
   login(usuario:string, contrasena:string): Observable<boolean>{
     
@@ -61,15 +74,7 @@ export class AuthService {
 
     return  this.http.post<respuestaLogin>(url,body)
     .pipe(
-      tap( ({user, token}) => {
-        this._usuario.set(user);
-        this._estadoLogin.set(estadoLogin.autenticado)
-        localStorage.setItem('token', token)
-      }),
-      map( ()=> 
-      
-      true
-      
+      map(({user, token}) =>this.setAutenticacion(user,token)
     ),
 
       catchError( err => throwError (() => err.error.message)
@@ -79,8 +84,6 @@ export class AuthService {
     
   }
   
- 
-
 
  //creación de variables para datos del usuario
 
@@ -101,11 +104,13 @@ export class AuthService {
    return result! 
  }
 
- estadoCheckToken(): Observable<boolean>{
+ CheckStatus(): Observable<boolean>{
   const url = `${this.baseUrl}/usuario/check-token`
   const token = localStorage.getItem('token') 
   
   if(!token){
+    /* this.logout() */
+    console.log(`No hay token`)
     return of (false);
   } 
 
@@ -114,15 +119,12 @@ export class AuthService {
 
   return this.http.get<respuestaToken>(url,{headers})
   .pipe(
-  map(({user, token}) => {
-    this._usuario.set(user);
-    this._estadoLogin.set(estadoLogin.autenticado)
-    localStorage.setItem('token', token)
-    return true 
-  }),
-  catchError(() =>{
+    map(({user, token}) =>this.setAutenticacion(user,token)
+  ),
+  catchError((err) =>{
+    console.error('Error al renovar el token:', err);
     this._estadoLogin.set(estadoLogin.noAutenticado)
-    
+
     return of(false)
   })
 )
@@ -133,7 +135,12 @@ export class AuthService {
 
 
 
+ logout(){
+  localStorage.removeItem('token')
+  this._usuario.set(null)
+  this._estadoLogin.set(estadoLogin.noAutenticado)
 
+}
 
 
 

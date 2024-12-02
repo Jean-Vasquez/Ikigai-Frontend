@@ -6,24 +6,23 @@ import { estadoLogin } from '../interfaces';
 export const publicGuard: CanActivateFn = (route, state) => {
   
   const authService = inject(AuthService)
-  const routes = inject(Router)
+  const router = inject(Router)
      
-  if(authService.estadoLogin() ===estadoLogin.autenticado){
-    console.log(`Autenticado Guard`)
-    return true;
+   if(authService.estadoLogin() == estadoLogin.autenticado ){
+      return true;
   } 
 
-  if(authService.estadoLogin() === estadoLogin.comprobando){
-    console.log(`Comprobando Guard`)
+  if(authService.estadoLogin() == estadoLogin.comprobando){
     return false 
   }
 
-
-  console.log('Necesitas iniciar sesión')
-
+  /*
   const url = state.url;
   localStorage.setItem('path', url);  
   routes.navigateByUrl(`/auth/login`) 
-  return false;
+  return false; */
+  router.navigateByUrl(`/auth/login`)
+
+  return false
   
 };

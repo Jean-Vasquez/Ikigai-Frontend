@@ -6,6 +6,7 @@ import { RegisterproductPageComponent } from "./pages/registerproduct-page/regis
 import { ProductsPageComponent } from "./pages/products-page/products-page.component";
 import { publicGuard } from "../auth/guard/public.guard";
 import { ProductformComponent } from "./components/products-page-components/productform/productform.component";
+import { privateGuard } from "../auth/guard/private.guard";
 
 
 const routes : Routes = [

@@ -22,8 +22,8 @@ const routes: Routes = [
   {path:'nav',component: NavComponent},
   {path:'footer',component: FooterComponent},
 
-  {path:'',redirectTo:'/index',pathMatch:'full'},
-  {path:'home',component: MainComponent},
+  
+  {path:'home', component: MainComponent },
   
   {path:'settings',  canActivate: [publicGuard], component: UserSettingsComponent},
 
@@ -40,7 +40,6 @@ const routes: Routes = [
     loadChildren: () => import ('./receipts/receipts.module').then(module => module.ReceiptsModule)
   },
   {path: '**' , redirectTo: 'home'}
-
 ];
 
 @NgModule({

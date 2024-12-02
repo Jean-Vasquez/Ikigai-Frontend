@@ -59,10 +59,10 @@
                 <div *ngIf="verificarLogin();else register" class="dropdown d-flex flex-column justify-content-center align-items-center">
 
 
-                    <a id="btn-dropdown" class="btn  btn-outline-light dropdown-toggle border-0 d-flex justify-content-center" type="button"
+                    <a id="btn-dropdown" class="btn btn-outline-light dropdown-toggle border-0 d-flex justify-content-center" type="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <i id="user-icon" class="bi bi-person-circle fs-5 mx-2"> 
-                        </i><p>{{ user()?.usuario}}</p> 
+                        </i><p>{{ user()| json}}</p> 
                         
                     </a>
 
@@ -93,9 +93,8 @@
 
 
                         <li>
-                            <a routerLink="auth/login" id="dropdown-submenus-3" class="dropdown-item">
+                            <a (click)="logout()" id="dropdown-submenus-3" class="dropdown-item">
                                 <i class="bi bi-door-open fs-2"></i>
-
                                 Cerrar Sesión
                             </a>
                         </li>

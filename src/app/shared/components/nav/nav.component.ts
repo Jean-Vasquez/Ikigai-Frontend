@@ -22,11 +22,10 @@ export class NavComponent{
     if(this.authService.estadoLogin() === estadoLogin.comprobando){
       return false
     }
-    if(this.authService.estadoLogin() === estadoLogin.noAutenticado){
+   /*  if(this.authService.estadoLogin() === estadoLogin.noAutenticado){
       return false
     }
-    
-    
+     */
     return true
   })
 
@@ -39,17 +38,22 @@ export class NavComponent{
         return;
 
       case estadoLogin.autenticado:
-        console.log(`autenticado switch`)    
+        const url = localStorage.getItem('path')
+        this.router.navigateByUrl(`${url}`)
         return; 
-
+ 
       case estadoLogin.noAutenticado:
-        console.log(`No autenticado switch`)
+        console.log(`No auntenticado`)
+        /* this.router.navigateByUrl(`auth/login`) */
         return;
     }
 
   })
 
 
-  
+  public logout(){
+    this.authService.logout()
+  }
+
 
 }

@@ -11,16 +11,13 @@ export const privateGuard: CanActivateFn = (route, state) => {
   
   const authService = inject(AuthService)
   const routes = inject(Router)
-     
-  if(authService.estadoLogin() == estadoLogin.autenticado){
-    return true;
+  if(authService.estadoLogin() === estadoLogin.autenticado){
+    routes.navigateByUrl(`/home`)
+    return false;
   } 
 
-  const url = state.url;
-  localStorage.setItem('path', url); 
-  routes.navigateByUrl(`/auth/login`)
 
-  return false;
+  return true;
   
 
   
