@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { productsNewArray } from '../interfaces/productsNewArray';
 import { respuestaProductos } from '../interfaces/respuestaProductos';
@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { paginacionProductos } from '../interfaces/paginacion-Productos';
 import { datosProductos } from '../interfaces/datos-productos.interface';
 import { respuestaPrueba } from '../interfaces/respuesta-prueba.interface';
-
+import { NewProduts } from '../interfaces/new-product';
 @Injectable({
   providedIn: 'root'
 })
@@ -91,7 +91,10 @@ export class ProductsService {
   }
   
 
-  
+async newAllProducts() {
+  return await this.http.get<NewProduts[]>(`${this.baseUrl}/producto/nuevo`).toPromise();
+} 
 
+/* FALTA PAGINACION, BUSQUEDA  */
 
 }
