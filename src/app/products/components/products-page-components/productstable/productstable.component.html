@@ -1,35 +1,109 @@
 
-<div class="table-container flex-grow-1 ">
-    <h2>Registrar Productos</h2>
-    <table class="table table-dark table-bordered ">
-    <thead>
+<div class="table-responsive " style="max-height: 100vh;">
+    <table class="table table-striped rounded shadow-sm">
+      <thead class="table-dark rounded" style="position: sticky; top: 0; z-index: 2;">
         <tr>
-        <th scope="col">Categoría</th>
-        <th scope="col">Nombre</th>
-        <th scope="col">Url Imagen</th>
-        <th scope="col">Descripción</th>
-        <th scope="col">Presentación</th>
-        <th scope="col">Precio</th>
-        <th scope="col">Stock</th>
-        <th scope="col">Acciones</th>
+                <th class="text-center">Categoría</th>
+                <th class="text-center">Nombre</th>
+                <th class="text-center">Url Imagen</th>
+                <th class="text-center">Descripción</th>
+                <th class="text-center">Precio</th>
+                <th class="text-center">Stock</th>
+                <th class="text-center">Acciones</th>
         </tr>
-    </thead>
-    <tbody>
-      
-        <tr *ngFor="let x of products">
-        <td>{{x.categoria}}</td>
-        <td>{{x.nombre}}</td>
-        <td>{{x.imgUrl}}</td>
-        <td>{{x.descripcion}}</td>
-        <td>{{x.presentacion}}</td>
-        <td>{{x.precio}}</td>
-        <td>{{x.stock}}</td>
-        <td>
-            <i class="bi bi-pencil action-icons" (click)="editProduct(x)" title="Editar"></i>
-            <i class="bi bi-trash action-icons" (click)="removeProduct(x.id)" title="Eliminar"></i>
-        </td>
+      </thead>
+      <tbody class="scrollable-tbody" style="max-height: 600px; overflow-y: auto;">
+        <tr *ngFor="let x of products" class="animate__animated animate__fadeInUp">
+            <td>{{x.categoria}}</td>
+                <td class="text-center align-middle">{{x.nombre}}</td>
+                <td class="text-center align-middle">{{x.imagen}}</td>
+                <td class="text-center align-middle">{{x.descripcion}}</td>
+                <td class="text-center align-middle">{{x.precio}}</td>
+                <td class="text-center align-middle">{{x.stock}}</td>
+                <td class="text-center align-middle">
+                    <div class="d-flex justify-content-center align-middle">
+                        <button class="btn btn-sm btn-primary me-1" data-bs-toggle="modal" data-bs-target="#updateProducto" *ngIf="x._id" (click)="editarProduc(x)" title="Editar">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+                        <button class="btn btn-sm btn-danger" *ngIf="x._id" (click)="deleteProduct(x._id)" title="Eliminar">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
+                </td>
         </tr>
-        
-    </tbody>
+      </tbody>
     </table>
-</div>
+  </div>
+
+<!--modal para editar-->
+  <div class="modal fade" tabindex="-1" id="updateProducto" aria-labelledby="editProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content animate__animated animate__zoomIn">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title">
+            <i class="bi bi-pencil-square" style="margin-right: 6px;"></i>Actualizar Producto
+        </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          
+            <!-- Divs para cada campo de producto -->
+            <div class="mb-3">
+                  <label for="categoria" class="form-label">
+                      <i class="bi bi-box"></i> Categoría
+                    </label>
+                    <select class="form-control"   [(ngModel)]="productoSelect.categoria" name="categoria" >
+                      <option value="cuadros">Cuadros</option>
+                      <option value="peluches">Peluches</option>
+                      <option value="accesorios">Accesorios</option>
+                      <option value="figuras">Figuras</option>
+                      <option value="tazas">Tazas</option>
+                  </select>
+              </div>
+              
+              <div class="mb-3">
+                <label for="nombre" class="form-label">
+                  <i class="bi bi-tag"></i> Nombre
+                </label>
+                <input type="text" id="nombre" class="form-control" [(ngModel)]="productoSelect.nombre" name="nombre" />
+              </div>
+              
+              <div class="mb-3">
+                <label for="imagen" class="form-label">
+                  <i class="bi bi-image"></i> URL Imagen
+                </label>
+                <input type="text" id="imagen" class="form-control" [(ngModel)]="productoSelect.imagen" name="imagen" />
+              </div>
+              
+              <div class="mb-3">
+                <label for="descripcion" class="form-label">
+                  <i class="bi bi-file-earmark-text"></i> Descripción
+                </label>
+                <textarea id="descripcion" class="form-control" rows="3" [(ngModel)]="productoSelect.descripcion" name="descripcion"></textarea>
+              </div>
+              
+              <div class="mb-3">
+                <label for="precio" class="form-label">
+                  <i class="bi bi-currency-dollar"></i> Precio
+                </label>
+                <input type="number" id="precio" class="form-control" [(ngModel)]="productoSelect.precio" name="precio" />
+              </div>
+              
+              <div class="mb-3">
+                <label for="stock" class="form-label">
+                  <i class="bi bi-boxes"></i> Stock
+                </label>
+                <input type="number" id="stock" class="form-control" [(ngModel)]="productoSelect.stock" name="stock" />
+              </div>
+              
+        </div>
+        <div class="">
+            <div class="d-flex align-items-center justify-content-center">
+                <button type="button" class="btn btn-primary m-2" (click)="Actulizar()">Guardar Cambios</button>
+                <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal">Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductsService } from '../../services/Products.service';
-import { productsListArray } from '../../interfaces/productsListArray';
+import { respuestaProductos } from '../../interfaces/respuestaProductos';
 
 @Component({
   selector: 'app-product-detail',
@@ -11,7 +11,7 @@ import { productsListArray } from '../../interfaces/productsListArray';
 export class ProductDetailComponent  {
   product: any;
 
-  public products : productsListArray[] = []
+  public products : respuestaProductos[] = []
 
   constructor(private router: Router, private productService:ProductsService) {
     const navigation = this.router.getCurrentNavigation();
@@ -20,18 +20,6 @@ export class ProductDetailComponent  {
 
 
 
-  public getProduct(item: string){
-
-   const i = this.productService.getProducId(item)
-   this.products.push(i)
 }
 
-
-
-
-
-
-
-
-}
 

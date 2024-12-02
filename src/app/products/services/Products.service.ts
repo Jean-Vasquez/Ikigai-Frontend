@@ -1,218 +1,97 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { productsNewArray } from '../interfaces/productsNewArray';
-import { productsListArray } from '../interfaces/productsListArray';
-import { v4 as uuid} from 'uuid'
+import { respuestaProductos } from '../interfaces/respuestaProductos';
+import { environment } from '../../../environments/environments';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { paginacionProductos } from '../interfaces/paginacion-Productos';
+import { datosProductos } from '../interfaces/datos-productos.interface';
+import { respuestaPrueba } from '../interfaces/respuesta-prueba.interface';
+
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
+  private products: respuestaProductos[] = []; // Usa productsListArray para almacenar todos los detalles
 
-  /* Falta interface de cart */
-  private cart: any[] = [];
-  
-  private products: productsListArray[] = []; // Usa productsListArray para almacenar todos los detalles
-  private newProducts : productsNewArray[] = [];
+  private baseUrl = `${environment.baseURL}/producto`; //url para conexion con la bd
 
-
-  constructor() {
-    this.loadProducts();
-    this.loadCart();  // Cargar el carrito si es necesario
+  constructor(private http: HttpClient) {
+      // Cargar el carrito si es necesario
   }
 
-  /* Agrega producto seleccionado al carrito, 
-  pasa como parametro un Array de un producto */
-  addToCart(product: productsNewArray) {
+ /*----------CRUD PRODUCTOOO---------------*/
 
-    /* Asigna a item el resultado del find */
-    const item = this.cart.find((p) => p.id === product.id);
-   
-    /* Si encuentra un id igual en el array del carrito,
-     le suma +1 al producto del carrito*/
-    if (item) {
-      item.quantity++;
-    } 
-   
-    /* Sino, agrega el nuevo producto al array del carrito*/
-    else {
-      this.cart.push({ ...product, quantity: 1 });
-    }
+  // Obtener todos los productos
+  getProducts(): Observable<paginacionProductos> {
     
-    /* Guarda en el localStorage el carrito */
-    this.saveCart();
-  }
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NGNjOTRlZmJiNDJkZjA0NjQ1ODAzMCIsInJvbCI6ImFkbWluaXN0cmFkb3IiLCJpYXQiOjE3MzMxMDAwMjUsImV4cCI6MTczMzEyMTYyNX0.r2157L8ysokAKv7qI5bsJQaDyDUPDSCvSkHXsJO7vLk'
 
-  /* Método para guardar en el localStorage */
-  private saveCart(): void {
-    localStorage.setItem('cart', JSON.stringify(this.cart));
-  }
+    const headers = new HttpHeaders().
+    set('Authorization', `Bearer ${token}`)
 
-  public getProductsAll(): Observable<productsNewArray[]> {
-    // Filtra los productos para que solo devuelvan las propiedades necesarias para productsNewArray
-    const newProducts: productsNewArray[] = this.products.map(p => ({
-      id: p.id,
-      nombre: p.nombre,
-      imgUrl: p.imgUrl,
-      precio: p.precio,
-      categoria : p.categoria
-    }));
-    return of(newProducts);
-  }
+    return this.http.get<paginacionProductos>(this.baseUrl,{headers});
 
-  /* Mapeamos el arreglo original de productos, para obtener todos los 
-  id, nombre, img, categoria, precio, para asignarlos al otro arreglo
-  de newProducts */
-  public getProductsNew():Observable<productsNewArray[]>{
-    const newProducts:productsNewArray[] = this.products.map( i =>({
-      id: i.id,
-      nombre: i.nombre,
-      imgUrl: i.imgUrl,
-      categoria: i.categoria,
-      precio: i.precio
-    }))
-
-
-    /* Modificamos el arreglo de newProducts en reversa y 
-    solo obtenemos los 5 primeros elementos */
-    const limitedProducts = newProducts.reverse().slice(0, 5);
-
-    /* Retornamos al observable el nuevo arreglo con limite 5 */
-    return of(limitedProducts);
-  }
-  
- /* Permite mostrar el producto seleccionado */
-  public getProducId(item : string): productsListArray {
-    const selectProduct = this.products.findIndex(product => product.id === item)
-      
-       return this.products[selectProduct]
-
-  }
-
-
-  /* Retorna la lista de Productos */
-  public getProducts(): productsListArray[] {
-    return this.products;
+    
   }
   
 
-  /* Añade un nuevo producto a la lista de productos y 
-  guarda el localStorage */
-  addProduct(product: productsListArray): void {
-    this.products.push(product);
-    this.saveProducts();
+   // Crear un nuevo producto
+   addProduct(product: datosProductos): Observable<respuestaPrueba> { 
+    
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NGNjOTRlZmJiNDJkZjA0NjQ1ODAzMCIsInJvbCI6ImFkbWluaXN0cmFkb3IiLCJpYXQiOjE3MzMxMDAwMjUsImV4cCI6MTczMzEyMTYyNX0.r2157L8ysokAKv7qI5bsJQaDyDUPDSCvSkHXsJO7vLk'
+
+    const headers = new HttpHeaders().
+    set('Authorization', `Bearer ${token}`)
+
+    return this.http.post<respuestaPrueba>(this.baseUrl, product, {headers})
+
+
+    
   }
 
-  /* Guarda productos en localStorage*/
-  private saveProducts(): void {
-    localStorage.setItem('productos', JSON.stringify(this.products));
+  // Obtener producto por ID
+  getProductById(id: string): Observable<respuestaProductos> {
+    return this.http.get<respuestaProductos>(`${this.baseUrl}/${id}`);
+  }
+
+  //Actualizar un producto
+  async updateProducto(id: string, product: respuestaProductos){
+    const {_id, ...updateProducto} = product;
+
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NGNjOTRlZmJiNDJkZjA0NjQ1ODAzMCIsInJvbCI6ImFkbWluaXN0cmFkb3IiLCJpYXQiOjE3MzMxMDAwMjUsImV4cCI6MTczMzEyMTYyNX0.r2157L8ysokAKv7qI5bsJQaDyDUPDSCvSkHXsJO7vLk'
+
+    const headers = new HttpHeaders().
+    set('Authorization', `Bearer ${token}`)
+
+
+    return await this.http.patch<respuestaProductos>(`${this.baseUrl}/${id}`, updateProducto, {headers}).toPromise();
   }
 
 
   private loadProducts(): void {
-    const savedProducts = localStorage.getItem('productos');
-    if (savedProducts) {
-      this.products = JSON.parse(savedProducts) as productsListArray[];
-    } else {
-      // Aquí puedes agregar productos predeterminados si es necesario
-      this.products = [
-        { id: '1', nombre: 'Goku Niño sentado en nube voladora', imgUrl: 'images/Goku_niño.jpg', precio: 30.00, categoria: 'Anime', descripcion: 'Descripción de Goku Niño', presentacion: 'Figura', stock: 10 },
-        { id: '2', nombre: 'Goku Niño', imgUrl: 'images/Goku_niño.jpg', precio: 30.00, categoria: 'Anime', descripcion: 'Descripción de Goku Niño', presentacion: 'Figura', stock: 10 },
-        // Agrega más productos si es necesario
-      ];
-      this.saveProducts();
-    }
-  }
-
-  /* De acuerdo al id del parametro, filtra el producto y 
-  lo guarda el localStorage */
-  removeProduct(productId: string): void {
-    this.products = this.products.filter(product => product.id !== productId);
-    this.saveProducts();
-  }
-
-  /*De acuerdo al id del producto, busca para modificar el que
-  tenga el mismo id, y luego guarda en el localStorage */
-  updateProduct(updatedProduct: productsListArray): void {
-    const index = this.products.findIndex(product => product.id === updatedProduct.id);
-    if (index !== -1) {
-      this.products[index] = updatedProduct;
-      this.saveProducts();
-    }
-  }
-
-  /* Obtiene la array cart */
-  public getCart(): any[] {
-    return this.cart;
-  }
-
-  /* Limpia el array cart y lo guarda en el localStorage */
-  clearCart(): void {
-    this.cart = [];
-    this.saveCart();
-  }
-
-  /* Actualiza el array, asignando el valor que se le pase
-  por el parametro y luego guarda en el localStorage los cambios */
-  updateCart(cart: any[]): void {
-    this.cart = cart;
-    this.saveCart();
-  }
-
-  /* Borra producto del carrito */
-   clearCartID(item: string ): void{
-    this.cart = this.cart.filter(cartArray => cartArray.id !== item)
-    this.saveCart()
-  }
-
-  /* Busca el item cart del localStorage, 
-  agisna al array del carrito, savedCart, que puede estar vacío
-  o puede obtener el JSON del localStorage*/
-  private loadCart(): void {
-    const savedCart = localStorage.getItem('cart');
-    this.cart = savedCart ? JSON.parse(savedCart) : [];
-  }
-
-
-
-/* -------------------AGREGAR PRODUCTOS NUEVOS---------------------- */
-  public agregarProductos(producto: productsListArray){
-
-    const NuevoProducto: productsListArray =  {
-      id: uuid(),
-      nombre:       producto.nombre,
-      categoria:    producto.categoria,
-      descripcion:  producto.descripcion,
-      imgUrl :      producto.imgUrl,
-      precio:       producto.precio,
-      presentacion: producto.presentacion,
-      stock:        producto.stock
-        
-    }
-  
-    try {
-      if(this.products.push(NuevoProducto)){
-        this.guardarProductoStorage()
+    this.getProducts().subscribe(
+      (resp) =>{
+        this.products = resp.productos;
+      }, (error) => {
+        console.error('Error al cargar los productos desde el servidor', error);
       }
-    } catch (error) {
-      console.log(`Error en agregarProductos: ${error}`)
-    }
-
+    );
   }
 
-  public guardarProductoStorage(){
-    localStorage.setItem('productos', JSON.stringify(this.products))
+   // Eliminar un producto por ID
+   deleteProduct(_id: string): Observable<void> {
+
+  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NGNjOTRlZmJiNDJkZjA0NjQ1ODAzMCIsInJvbCI6ImFkbWluaXN0cmFkb3IiLCJpYXQiOjE3MzMxMDAwMjUsImV4cCI6MTczMzEyMTYyNX0.r2157L8ysokAKv7qI5bsJQaDyDUPDSCvSkHXsJO7vLk'
+
+    const headers = new HttpHeaders().
+    set('Authorization', `Bearer ${token}`)
+
+    return this.http.delete<void>(`${this.baseUrl}/${_id}`,{headers});
   }
+  
 
+  
 
-  public obtenerPorductos(){
-    return this.products
-  }
-
-
-/* -------------------AGREGAR PRODUCTOS NUEVOS---------------------- */
-
-
-
-/* FALTA PAGINACION, BUSQUEDA  */
 
 }

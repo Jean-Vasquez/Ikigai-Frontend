@@ -3,38 +3,37 @@
         <form class="m-5" (ngSubmit)="addProduct()">
         <div class="form-group">
             <label for="categoria">Categoría</label>
-            <select class="in"   [(ngModel)]="newproducts.categoria" name="cartegoria" >
-                <option value="Cuadros">Cuadros</option>
-                <option value="Peluches">Peluches</option>
-                <option value="Accesorios">Accesorios</option>
-                <option value="Figuras">Figuras</option>
+            <select class="in"   [(ngModel)]="newproducts.categoria" name="categoria" >
+                <option value="cuadros">Cuadros</option>
+                <option value="peluches">Peluches</option>
+                <option value="accesorios">Accesorios</option>
+                <option value="figuras">Figuras</option>
                 <option value="tazas">Tazas</option>
             </select>
         </div>
         <div class="form-group">
             <label for="name">Nombre</label>
-            <input type="text" class="form-control"[(ngModel)]="newproducts.nombre" name="nombre" id="name" placeholder="Nombre del Producto">
+            <input type="text" class="form-control"[(ngModel)]="newproducts.nombre" name="nombre" id="nombre" placeholder="Nombre del Producto">
         </div>
         <div class="form-group">
             <label for="imageUrl">Url Imagen</label>
-            <input type="text" class="form-control" [(ngModel)]="newproducts.imgUrl" name="imgUrl" id="imageUrl" placeholder="URL de la Imagen">
+            <input type="text" class="form-control" [(ngModel)]="newproducts.imagen" name="imagen" id="imagen" placeholder="URL de la Imagen">
         </div>
         <div class="form-group">
             <label for="description">Descripción</label>
-            <input maxlength="30" type="text" class="form-control"  [(ngModel)]="newproducts.descripcion" name="descripcion" id="description" placeholder="Descripción del Producto">
-        </div>
-        <div class="form-group">
-            <label for="presentation">Presentación</label>
-            <input type="text" class="form-control"  [(ngModel)]="newproducts.presentacion" name="presentacion"  id="presentation" placeholder="Presentación del Producto">
+            <input maxlength="30" type="text" class="form-control"  [(ngModel)]="newproducts.descripcion" name="descripcion" id="descripcion" placeholder="Descripción del Producto">
         </div>
         <div class="form-group">
             <label for="price">Precio</label>
-            <input type="text" class="form-control" [(ngModel)]="newproducts.precio" name="precio"   id="price" placeholder="Precio del Producto">
+            <input type="number" class="form-control" [(ngModel)]="newproducts.precio" name="precio"   id="precio" placeholder="Precio del Producto">
         </div>
         <div class="form-group">
             <label for="stock">Stock</label>
-            <input type="text" class="form-control"  [(ngModel)]="newproducts.stock"   name="stock" id="stock" placeholder="Stock del Producto">
+            <input type="number" class="form-control"  [(ngModel)]="newproducts.stock"   name="stock" id="stock" placeholder="Stock del Producto">
         </div>
-        <button type="submit" class="btn btn-danger mt-2" >  {{ isEditing ? 'Actualizar Producto' : 'Guardar Producto' }}</button>
+        <button type="submit" class="btn btn-danger mt-2" >  {{  'Guardar Producto' }}</button>
+        <button type="button" class="btn btn-secondary mt-2 ms-2" (click)="resetForm()">
+        Cancelar
+      </button>
         </form>
     </div>

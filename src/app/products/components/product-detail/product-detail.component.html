@@ -10,7 +10,7 @@
                 <div *ngFor="let x of products" class="details-container">
                     <div class="row" style="padding: 20px;">
                         <div class="col-lg-3 product-image">
-                            <img [src]="x.imgUrl" alt="">
+                            <img [src]="x.imagen" alt="">
                         </div>
                         <div  class="col-lg-6 product-details">
                             <b>{{x.nombre}}</b>
@@ -34,7 +34,6 @@
                                     <b>Precio:{{x.precio}}</b> 
                                 </div>
                                 <div class="col">
-                                    <b>Presentación:</b> {{x.presentacion}}
                                     <br>
                                     <b>Stock:</b> {{x.stock}}
                                 </div>

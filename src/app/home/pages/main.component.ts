@@ -9,7 +9,7 @@ import { productsNewArray } from '../../products/interfaces/productsNewArray';
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
 })
-export class MainComponent implements OnInit{
+export class MainComponent {
 
   products: productsNewArray[] = []
 
@@ -17,9 +17,5 @@ export class MainComponent implements OnInit{
 
   }
 
-  ngOnInit(): void {
-    this.productsService.getProductsNew().subscribe(data =>{
-      this.products = data
-    })
-  }
+ 
 }
