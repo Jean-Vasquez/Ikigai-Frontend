@@ -8,33 +8,39 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { MainComponent } from './home/pages/main.component';
 
 
+import { publicGuard } from './auth/guard/public.guard';
+
+
 const routes: Routes = [
 
  
   
   
-  {path:'nosotros',component: AboutComponent},
+  {path:'about',component: AboutComponent},
+
 
   {path:'nav',component: NavComponent},
   {path:'footer',component: FooterComponent},
 
   {path:'',redirectTo:'/index',pathMatch:'full'},
-  {path:'index',component: MainComponent},
+  {path:'home',component: MainComponent},
   
-  {path:'settings',component: UserSettingsComponent},
+  {path:'settings',  canActivate: [publicGuard], component: UserSettingsComponent},
 
   {path : 'auth', 
     loadChildren: () => import ('./auth/auth.module').then(module => module.AuthModule)
   },
-  {path: 'checkout',
+  {path: 'checkout'  , 
      loadChildren: () => import('./checkout/checkout.module').then(module => module.CheckoutModule)  
   },  
   {path: 'products',
       loadChildren: () => import('./products/products.module').then(module => module.ProductsModule)
   },
-  {path : 'receipt', 
+  {path : 'receipts', 
     loadChildren: () => import ('./receipts/receipts.module').then(module => module.ReceiptsModule)
-  }
+  },
+  {path: '**' , redirectTo: 'home'}
+
 ];
 
 @NgModule({
