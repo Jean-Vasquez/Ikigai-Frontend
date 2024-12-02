@@ -17,8 +17,8 @@ export class LoginComponent {
   private router = inject(Router)
 
   public myForm: FormGroup = this.fb.group({
-    usuario   : ['Jean123456', [Validators.required,Validators.minLength(8)]],
-    contrasena: ['60692466',[Validators.required, Validators.minLength(6)]]
+    usuario   : ['Jean592118', [Validators.required,Validators.minLength(8)]],
+    contrasena: ['Jean592118',[Validators.required, Validators.minLength(6)]]
   });
 
 
@@ -28,7 +28,11 @@ export class LoginComponent {
 
     this.authService.login(usuario,contrasena)
     .subscribe({
-      next: () => this.router.navigateByUrl('/index'),
+      next: () =>{
+          this.router.navigateByUrl('/home')
+      } 
+        
+      ,
       error: (message) => {
         Swal.fire('Error', message , 'error')
       } 

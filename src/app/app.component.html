@@ -1,14 +1,15 @@
+    
+    <div *ngIf="!authService.mostrarNavFooter">
+        <app-nav></app-nav>    
+    </div>
 
-<!-- <div *ngIf="!authService.mostrarNavFooter">
-    <app-nav></app-nav>
-</div> -->
+    <div >
+        <router-outlet></router-outlet>
+    </div>
 
-<div >
-    <router-outlet></router-outlet>
-</div>
+    <div  *ngIf="!authService.mostrarNavFooter">
+        <app-footer></app-footer>
+    </div>
+    
 
-<!-- <div  *ngIf="!authService.mostrarNavFooter">
-    <app-footer></app-footer>
-</div>
- -->
     

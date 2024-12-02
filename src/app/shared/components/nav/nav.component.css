@@ -71,3 +71,19 @@ span{
     font-weight: bold;
     font-size: 20px;
 }
+
+#register-buttons {
+    width: 100%;               
+    max-width: 600px;          
+    margin: 0 auto;            
+  }
+  
+  #register-buttons .btn {
+    flex: 1;                   
+    min-width: 120px;          
+    white-space: nowrap;       
+    background-color: #f56c5e;
+    color: #ffffff;
+    font-weight: bold;
+    border-color: #f56c5e;
+  }

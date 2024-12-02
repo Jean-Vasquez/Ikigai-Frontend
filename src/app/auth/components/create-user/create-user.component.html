@@ -1,12 +1,12 @@
-<div class="contenedor-login" >
-    <div class="imagen-login" > 
+<div class="contenedor-login">
+    <div class="imagen-login">
     </div>
     <div class="formulario-login">
         <div class="header">
             <button class="btn-regresar" [routerLink]="'auth/register'">&#8592;</button>
             <h1 class="title"><strong>Crear cuenta</strong></h1>
         </div>
-        <form >
+        <form>
             <div class="grupo-formulario">
                 <label for="usuario">
                     <i class="bi bi-person-circle"></i> NOMBRE DE USUARIO
@@ -19,9 +19,8 @@
                 </label>
                 <input type="password" id="contrasena" name="contrasena" [(ngModel)]="usuario.contrasena" required>
             </div>
-            
             <div class="grupo-formulario">
-                <button type="button" class="btn" (click)="createUser()" [disabled]="isLoading"><strong>
+                <button type="button" class="btn"(click)="createUser()" [disabled]="isLoading"><strong>
                     <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     <span *ngIf="!isLoading"><i class="fas fa-sign-in-alt"></i> REGISTRAR</span>
                     <span *ngIf="isLoading">Registrando usuario...</span>
