@@ -7,12 +7,13 @@ import { ProductsPageComponent } from "./pages/products-page/products-page.compo
 import { publicGuard } from "../auth/guard/public.guard";
 import { ProductformComponent } from "./components/products-page-components/productform/productform.component";
 import { privateGuard } from "../auth/guard/private.guard";
+import { rolGuard } from "../auth/guard/rol.guard";
 
 
 const routes : Routes = [
   {path:'product-list',component: ProductsPageComponent},
   {path:'product-detail',component: ProductDetailComponent},
-  {path: 'add-product',  canActivate: [publicGuard] ,  component: RegisterproductPageComponent},
+  {path: 'add-product',  canActivate: [rolGuard] ,  component: RegisterproductPageComponent},
   {path: 'edit-product/:id', component: ProductformComponent},
   {path: '**', redirectTo: 'product-list'}
 ]

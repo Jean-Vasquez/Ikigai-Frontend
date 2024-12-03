@@ -12,48 +12,35 @@ import { Router } from '@angular/router';
 })
 export class NavComponent{
 
-  private authService = inject(AuthService)
-  public user = computed(() =>this.authService.usuario());
-  private router = inject(Router)
 
+  
+  public datosUsuario!: datosUsuario 
 
-  public verificarLogin = computed<boolean>( () => {
+  getUsuario(){
+    const user = localStorage.getItem('persona')
 
-    if(this.authService.estadoLogin() === estadoLogin.comprobando){
-      return false
-    }
-   /*  if(this.authService.estadoLogin() === estadoLogin.noAutenticado){
-      return false
-    }
-     */
-    return true
-  })
-
-  public cambiosEstado = effect (() => {
-    
-    switch(this.authService.estadoLogin()){
-
-      case estadoLogin.comprobando:
-        console.log(`Comprobando switch`)
-        return;
-
-      case estadoLogin.autenticado:
-        const url = localStorage.getItem('path')
-        this.router.navigateByUrl(`${url}`)
-        return; 
- 
-      case estadoLogin.noAutenticado:
-        console.log(`No auntenticado`)
-        /* this.router.navigateByUrl(`auth/login`) */
-        return;
-    }
-
-  })
-
-
-  public logout(){
-    this.authService.logout()
+    if(!user){
+        localStorage.removeItem('persona') 
+        return 
+      }
+       this.datosUsuario = JSON.parse(user)
   }
+
+
+  constructor(){
+    this.getUsuario()
+  }
+
+
+
+  public cambiosLogin = effect(() =>{
+
+    if(!localStorage.getItem('person')){
+        return !this.datosUsuario
+      }
+
+      return false
+    })
 
 
 }

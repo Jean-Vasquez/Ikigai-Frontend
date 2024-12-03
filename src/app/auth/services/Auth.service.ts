@@ -15,15 +15,12 @@ import {  respuestaToken } from '../interfaces/response/respuest-token.interface
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService implements OnInit {
+export class AuthService {
 
     private rutas = ['/auth/login','/auth/register','/auth/create-user']
 
   
     public mostrarNavFooter = false
-
- 
-
 
   
     private  baseUrl : string = environment.baseURL
@@ -43,14 +40,7 @@ export class AuthService implements OnInit {
           ).subscribe(()=>{
             this.mostrarNavFooter = this.rutas.includes(this.router.url)
           }) 
-
-
         }
-
-    ngOnInit(): void {
-      this.CheckStatus().subscribe()  
-    }
-      
 
 
     
@@ -63,6 +53,7 @@ export class AuthService implements OnInit {
     private setAutenticacion(user: datosLogin, token: string){
       this._usuario.set(user);
       this._estadoLogin.set(estadoLogin.autenticado)
+      localStorage.setItem('persona', JSON.stringify(user))
       localStorage.setItem('token', token)
       return true;
     }  
@@ -104,12 +95,13 @@ export class AuthService implements OnInit {
    return result! 
  }
 
- CheckStatus(): Observable<boolean>{
+
+/*CheckStatus(): Observable<boolean>{
   const url = `${this.baseUrl}/usuario/check-token`
   const token = localStorage.getItem('token') 
   
   if(!token){
-    /* this.logout() */
+    this.logout() 
     console.log(`No hay token`)
     return of (false);
   } 
@@ -128,8 +120,7 @@ export class AuthService implements OnInit {
     return of(false)
   })
 )
- }
-
+ }*/
 
 
 

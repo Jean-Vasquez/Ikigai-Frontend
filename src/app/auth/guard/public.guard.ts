@@ -16,11 +16,10 @@ export const publicGuard: CanActivateFn = (route, state) => {
     return false 
   }
 
-  /*
+
   const url = state.url;
   localStorage.setItem('path', url);  
-  routes.navigateByUrl(`/auth/login`) 
-  return false; */
+  router.navigateByUrl(`/auth/login`) 
   router.navigateByUrl(`/auth/login`)
 
   return false
