@@ -8,6 +8,9 @@ import { paginacionProductos } from '../interfaces/paginacion-Productos';
 import { datosProductos } from '../interfaces/datos-productos.interface';
 import { respuestaPrueba } from '../interfaces/respuesta-prueba.interface';
 import { NewProduts } from '../interfaces/new-product';
+import { AuthService } from '../../auth/services/Auth.service';
+import { Producto, respuestaProductosCliente } from '../interfaces/response/respuesta-productos.interface';
+import { productoDetalle } from '../interfaces/response/respuesta-detalle.interface';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,17 +19,16 @@ export class ProductsService {
 
   private baseUrl = `${environment.baseURL}/producto`; //url para conexion con la bd
 
-  constructor(private http: HttpClient) {
-      // Cargar el carrito si es necesario
+  constructor(private http: HttpClient, private authService: AuthService) {
+      
   }
 
  /*----------CRUD PRODUCTOOO---------------*/
 
-  // Obtener todos los productos
+  // Obtener todos los productos Administrador
   getProducts(): Observable<paginacionProductos> {
     
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NGNjOTRlZmJiNDJkZjA0NjQ1ODAzMCIsInJvbCI6ImFkbWluaXN0cmFkb3IiLCJpYXQiOjE3MzMxMDAwMjUsImV4cCI6MTczMzEyMTYyNX0.r2157L8ysokAKv7qI5bsJQaDyDUPDSCvSkHXsJO7vLk'
-
+    const token = localStorage.getItem('token') 
     const headers = new HttpHeaders().
     set('Authorization', `Bearer ${token}`)
 
@@ -38,29 +40,28 @@ export class ProductsService {
 
    // Crear un nuevo producto
    addProduct(product: datosProductos): Observable<respuestaPrueba> { 
-    
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NGNjOTRlZmJiNDJkZjA0NjQ1ODAzMCIsInJvbCI6ImFkbWluaXN0cmFkb3IiLCJpYXQiOjE3MzMxMDAwMjUsImV4cCI6MTczMzEyMTYyNX0.r2157L8ysokAKv7qI5bsJQaDyDUPDSCvSkHXsJO7vLk'
-
-    const headers = new HttpHeaders().
-    set('Authorization', `Bearer ${token}`)
+   
+   
+    const token = localStorage.getItem('token') 
+  
+    const headers = new HttpHeaders()
+    .set('Authorization', `Bearer ${token}`)
+  
 
     return this.http.post<respuestaPrueba>(this.baseUrl, product, {headers})
-
-
     
   }
 
-  // Obtener producto por ID
-  getProductById(id: string): Observable<respuestaProductos> {
-    return this.http.get<respuestaProductos>(`${this.baseUrl}/${id}`);
+ 
+  getProductById(id: string): Observable<productoDetalle> {
+    return this.http.get<productoDetalle>(`${this.baseUrl}/${id}`);
   }
 
-  //Actualizar un producto
+
   async updateProducto(id: string, product: respuestaProductos){
     const {_id, ...updateProducto} = product;
 
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NGNjOTRlZmJiNDJkZjA0NjQ1ODAzMCIsInJvbCI6ImFkbWluaXN0cmFkb3IiLCJpYXQiOjE3MzMxMDAwMjUsImV4cCI6MTczMzEyMTYyNX0.r2157L8ysokAKv7qI5bsJQaDyDUPDSCvSkHXsJO7vLk'
-
+    const token = localStorage.getItem('token') 
     const headers = new HttpHeaders().
     set('Authorization', `Bearer ${token}`)
 
@@ -69,21 +70,10 @@ export class ProductsService {
   }
 
 
-  private loadProducts(): void {
-    this.getProducts().subscribe(
-      (resp) =>{
-        this.products = resp.productos;
-      }, (error) => {
-        console.error('Error al cargar los productos desde el servidor', error);
-      }
-    );
-  }
 
-   // Eliminar un producto por ID
    deleteProduct(_id: string): Observable<void> {
 
-  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NGNjOTRlZmJiNDJkZjA0NjQ1ODAzMCIsInJvbCI6ImFkbWluaXN0cmFkb3IiLCJpYXQiOjE3MzMxMDAwMjUsImV4cCI6MTczMzEyMTYyNX0.r2157L8ysokAKv7qI5bsJQaDyDUPDSCvSkHXsJO7vLk'
-
+    const token = localStorage.getItem('token') 
     const headers = new HttpHeaders().
     set('Authorization', `Bearer ${token}`)
 
@@ -92,9 +82,29 @@ export class ProductsService {
   
 
 async newAllProducts() {
-  return await this.http.get<NewProduts[]>(`${this.baseUrl}/producto/nuevo`).toPromise();
+  return await this.http.get<NewProduts[]>(`${this.baseUrl}/nuevo`).toPromise();
 } 
 
-/* FALTA PAGINACION, BUSQUEDA  */
+
+
+  // Obtener todos los productos
+  getProductsCliente(): Observable<respuestaProductosCliente> {
+    
+    return this.http.get<respuestaProductosCliente>(`${this.baseUrl}/cliente`);
+
+    
+  }
+  
+ 
+
+
+  compraProd(id:string){
+
+    if(localStorage.getItem('compra')){
+      localStorage.removeItem('compra')
+    }
+    localStorage.setItem('compra', id)
+  }
+
 
 }

@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject } from '@angular/core';
+import { Component, computed, effect, inject, OnInit } from '@angular/core';
 import { AuthService } from './auth/services/Auth.service';
 import { AuthModule } from './auth/auth.module';
 import { Router } from '@angular/router';
@@ -9,9 +9,8 @@ import { estadoLogin } from './auth/interfaces';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
-  
-  public authService = inject(AuthService)
+export class AppComponent  {
+  constructor(public authService: AuthService) {}
 
-  
+
 }

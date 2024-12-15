@@ -29,7 +29,11 @@ export class LoginComponent {
     this.authService.login(usuario,contrasena)
     .subscribe({
       next: () =>{
+        if(!localStorage.getItem('token')){
           this.router.navigateByUrl('/home')
+        }
+        const url = localStorage.getItem('token')
+          this.router.navigateByUrl(`${url}`)
       } 
         
       ,

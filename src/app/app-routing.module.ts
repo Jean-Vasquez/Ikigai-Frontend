@@ -6,9 +6,10 @@ import { AboutComponent } from './about/components/about/about.component';
 import { NavComponent } from './shared/components/nav/nav.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { MainComponent } from './home/pages/main.component';
+import { authGuard } from './auth/guard/auth.guard';
 
 
-import { publicGuard } from './auth/guard/public.guard';
+
 
 
 const routes: Routes = [
@@ -22,10 +23,10 @@ const routes: Routes = [
   {path:'nav',component: NavComponent},
   {path:'footer',component: FooterComponent},
 
-  {path:'',redirectTo:'/index',pathMatch:'full'},
-  {path:'home',component: MainComponent},
   
-  {path:'settings',  canActivate: [publicGuard], component: UserSettingsComponent},
+  {path:'home', component: MainComponent },
+  
+  {path:'settings',  canActivate: [authGuard], component: UserSettingsComponent},
 
   {path : 'auth', 
     loadChildren: () => import ('./auth/auth.module').then(module => module.AuthModule)
@@ -40,7 +41,6 @@ const routes: Routes = [
     loadChildren: () => import ('./receipts/receipts.module').then(module => module.ReceiptsModule)
   },
   {path: '**' , redirectTo: 'home'}
-
 ];
 
 @NgModule({

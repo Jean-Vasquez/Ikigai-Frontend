@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { CheckoutService } from '../../services/Checkout.service';
+import { respuestaUsuario } from '../../../auth/interfaces';
 
 @Component({
   selector: 'checkout-customer-form',
@@ -6,5 +8,12 @@ import { Component } from '@angular/core';
   styleUrl: './customer-form.component.css'
 })
 export class CustomerFormComponent {
+
+  
+
+  constructor(private checkoutService: CheckoutService){}
+
+  
+
 
 }

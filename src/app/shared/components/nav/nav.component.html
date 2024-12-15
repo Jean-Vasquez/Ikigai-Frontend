@@ -7,7 +7,7 @@
 
         <div id="div-menus  " class="col- d-flex  justify-content-center">
             <ul id="menus" class="d-flex m-0 dropdown">
-                <!-- </a> </a> -->
+        
                 <a routerLink="home" id="menu-1" class=" mx-5 p-5 d-flex flex-column justify-content-center ">
                     <li>INICIO</li>
                 </a>
@@ -56,13 +56,13 @@
                       </div>
                 </ng-template>
 
-                <div *ngIf="verificarLogin();else register" class="dropdown d-flex flex-column justify-content-center align-items-center">
+                <div  *ngIf="datosUsuario;else register"          class="dropdown d-flex flex-column justify-content-center align-items-center">
 
 
-                    <a id="btn-dropdown" class="btn  btn-outline-light dropdown-toggle border-0 d-flex justify-content-center" role="button"
+                    <a id="btn-dropdown" class="btn  btn-outline-light dropdown-toggle border-0 d-flex justify-content-center" type="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <i id="user-icon" class="bi bi-person-circle fs-5 mx-2"> 
-                        </i><p>{{ user()?.usuario}}</p> 
+                        </i><p>{{datosUsuario.usuario}}</p> 
                         
                     </a>
 
@@ -84,7 +84,7 @@
                         </li>
 
 
-                        <li *ngIf="user()?.rol == 'administrador'">
+                        <li *ngIf="datosUsuario.rol == 'administrador'">
                             <a routerLink="products/add-product" id="dropdown-submenus-4" class="dropdown-item">
                                 <i class="bi bi-arrow-bar-up fs-2"></i>
                                 Registrar Productos
@@ -92,10 +92,10 @@
                         </li>
 
 
-                        <li>
-                            <a routerLink="auth/login" id="dropdown-submenus-3" class="dropdown-item">
+                        <li (click)="logout()">
+                            <a  
+                              id="dropdown-submenus-3" class="dropdown-item">
                                 <i class="bi bi-door-open fs-2"></i>
-
                                 Cerrar Sesión
                             </a>
                         </li>

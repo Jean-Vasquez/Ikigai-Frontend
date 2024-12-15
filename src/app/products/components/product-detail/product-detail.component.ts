@@ -1,22 +1,41 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, inject, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, RouterLinkActive } from '@angular/router';
 import { ProductsService } from '../../services/Products.service';
 import { respuestaProductos } from '../../interfaces/respuestaProductos';
+import { Producto } from '../../interfaces/response/respuesta-productos.interface';
+import { productoDetalle } from '../../interfaces/response/respuesta-detalle.interface';
 
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css'
 })
-export class ProductDetailComponent  {
+export class ProductDetailComponent implements OnInit {
   product: any;
 
-  public products : respuestaProductos[] = []
+  public products : productoDetalle[] = []
+  private productsService = inject(ProductsService)
+  private id: string =''
+  constructor(private route: ActivatedRoute){
+    
+    this.route.params.subscribe(params => this.id = params['id'] )
+  }
 
-  constructor(private router: Router, private productService:ProductsService) {
-    const navigation = this.router.getCurrentNavigation();
-    this.product = navigation?.extras.state?.['product'];
-  }  
+  ngOnInit(): void {
+    this.getProductosId(this.id)
+  }
+
+
+  getProductosId(id:string){
+    this.productsService.getProductById(id).subscribe({
+      next: (product) => this.products.push(product)
+    })
+  }
+
+
+  comprarProducto(id: string){
+    this.productsService.compraProd(id)
+  }
 
 
 
