@@ -1,7 +1,5 @@
 import { Component, computed, effect, inject } from '@angular/core';
 import { AuthService } from '../../../auth/services/Auth.service';
-import { SharedService } from '../../services/shared.service';
-import { datosUsuario } from '../../../auth/interfaces/data/datos-usuario.interface';
 import { estadoLogin } from '../../../auth/interfaces';
 import { Router } from '@angular/router';
 
