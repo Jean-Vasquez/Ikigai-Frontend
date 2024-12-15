@@ -11,6 +11,7 @@ import { AuthModule } from './auth/auth.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CheckoutModule } from './checkout/checkout.module';
+import { ProductsModule } from './products/products.module';
 
 
 @NgModule({
@@ -26,8 +27,9 @@ import { CheckoutModule } from './checkout/checkout.module';
     HomeModule,
     AuthModule,
     ReactiveFormsModule,
-    HttpClientModule ,
-    CheckoutModule   
+    HttpClientModule,
+    CheckoutModule,
+    ProductsModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -8,6 +8,7 @@ import { PaymentSummaryComponent } from './components/payment-summary/payment-su
 import { CardFormComponent } from './components/card-form/card-form.component';
 import { RouterModule } from '@angular/router';
 import { CheckoutRoutingModule } from './checkout-routing.module';
+import { AuthModule } from '../auth/auth.module';
 
 
 
@@ -22,7 +23,8 @@ import { CheckoutRoutingModule } from './checkout-routing.module';
   imports: [
     CommonModule,
     RouterModule,
-    CheckoutRoutingModule
+    CheckoutRoutingModule,
+    AuthModule
   ],
   exports:[
     CheckoutPageComponent,

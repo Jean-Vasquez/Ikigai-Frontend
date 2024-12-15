@@ -8,11 +8,12 @@ import { RegisterproductPageComponent } from './pages/registerproduct-page/regis
 import { ProductformComponent } from './components/products-page-components/productform/productform.component';
 import { ProductstableComponent } from './components/products-page-components/productstable/productstable.component';
 import { ProductsRoutingModule } from './products-routing.module';
-import { SearchBarComponent } from './components/products-page-components/search-bar/search-bar.component';
-import { CategoriesComponent } from './components/products-page-components/categories/categories.component';
-import { CartComponent } from './components/products-page-components/cart/cart.component';
-import { PaginationComponent } from './components/products-page-components/pagination/pagination.component';
-import { ProductsComponent } from './components/products-page-components/products/products.component';
+import { SearchBarComponent } from './components/products-page-list/search-bar/search-bar.component';
+import { CategoriesComponent } from './components/products-page-list/categories/categories.component';
+
+import { PaginationComponent } from './components/products-page-list/pagination/pagination.component';
+import { ProductsComponent } from './components/products-page-list/products/products.component';
+import { CartComponent } from './components/products-page-list/cart/cart.component';
 
 
 

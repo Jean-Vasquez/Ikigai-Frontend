@@ -1,19 +1,12 @@
 <div class="checkout-component">
     <h3>Resumen de Productos</h3>
-    <div class="product-item mb-3">
-      <p><strong>Goku Niño sentado en la nube voladora</strong></p>
-      <p><strong>Categoría:</strong> Muñecos</p>
-      <p><strong>Precio:</strong> S/ 35.00</p>
-      <div class="quantity">
-        <button class="btn btn-danger">-</button>
-        <span>1</span>
-        <button class="btn btn-danger">+</button>
-      </div>
-    </div>
-    <div class="product-item">
-      <p><strong>Vegeta en cápsula espacial</strong></p>
-      <p><strong>Categoría:</strong> Muñecos</p>
-      <p><strong>Precio:</strong> S/ 45.00</p>
+    
+    <div *ngFor="let item of producto" 
+    class="product-item mb-3">
+      <img [src]="item.imagen" alt="">
+      <p><strong>{{item.nombre}}</strong></p>
+      <p><strong>Categoría:</strong>{{item.categoria}}</p>
+      <p><strong>Precio:</strong> S/ {{item.precio}}</p>
       <div class="quantity">
         <button class="btn btn-danger">-</button>
         <span>1</span>

@@ -34,3 +34,8 @@
     font-size: 1.2rem;
   }
   
+  img{
+    max-width: 100px;
+    height: auto;
+    border: solid 2px ;
+  }

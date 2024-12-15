@@ -15,7 +15,7 @@
         </div>
         <div class="card-body d-flex justify-content-center flex-column">
           <h5 class="card-title m-auto">{{ product.nombre }}</h5>
-          <button [routerLink]="'/producto/' + product._id" id="btn-new-prod-2" class="btn m-auto">
+          <button (click)="getProductosId(product._id)" id="btn-new-prod-2" class="btn m-auto">
             Ver más
           </button>
         </div>
