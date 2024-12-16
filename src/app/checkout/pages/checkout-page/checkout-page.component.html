@@ -8,7 +8,12 @@
           <checkout-customer-form class="mb-2"></checkout-customer-form>
   
         
-          <checkout-product-summary class="mb-2"> </checkout-product-summary>
+          <checkout-product-summary class="mb-2" *ngIf="ifCart();else cart"> </checkout-product-summary>
+          
+          <ng-template #cart> 
+            <checkout-product-summary-cart class="mb-2" ></checkout-product-summary-cart>
+          </ng-template>
+          
         </div>
   
         
@@ -16,7 +21,7 @@
           
           <checkout-payment-summary class="mb-2"></checkout-payment-summary>
   
-          
+        
           <checkout-card-form class="mb-2"></checkout-card-form>
         </div>
       </div>

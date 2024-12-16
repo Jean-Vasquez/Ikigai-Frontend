@@ -1,6 +1,5 @@
-import { inject, Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { productsNewArray } from '../interfaces/productsNewArray';
+import {  Injectable } from '@angular/core';
+import { Observable} from 'rxjs';
 import { respuestaProductos } from '../interfaces/respuestaProductos';
 import { environment } from '../../../environments/environments';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -9,23 +8,27 @@ import { datosProductos } from '../interfaces/datos-productos.interface';
 import { respuestaPrueba } from '../interfaces/respuesta-prueba.interface';
 import { NewProduts } from '../interfaces/new-product';
 import { AuthService } from '../../auth/services/Auth.service';
-import { Producto, respuestaProductosCliente } from '../interfaces/response/respuesta-productos.interface';
+import { respuestaProductosCliente } from '../interfaces/response/respuesta-productos.interface';
 import { productoDetalle } from '../interfaces/response/respuesta-detalle.interface';
+import { datosCarrito } from '../interfaces/data/datos-carrito.interface';
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
-  private products: respuestaProductos[] = []; // Usa productsListArray para almacenar todos los detalles
+
 
   private baseUrl = `${environment.baseURL}/producto`; //url para conexion con la bd
 
-  constructor(private http: HttpClient, private authService: AuthService) {
-      
+  private cartItems: datosCarrito[] = [];
+
+  constructor(private http: HttpClient,private router : Router) {
+  this.cargarProductos()
   }
 
- /*----------CRUD PRODUCTOOO---------------*/
+ 
 
-  // Obtener todos los productos Administrador
+ 
   getProducts(): Observable<paginacionProductos> {
     
     const token = localStorage.getItem('token') 
@@ -38,7 +41,7 @@ export class ProductsService {
   }
   
 
-   // Crear un nuevo producto
+ 
    addProduct(product: datosProductos): Observable<respuestaPrueba> { 
    
    
@@ -87,7 +90,6 @@ async newAllProducts() {
 
 
 
-  // Obtener todos los productos
   getProductsCliente(): Observable<respuestaProductosCliente> {
     
     return this.http.get<respuestaProductosCliente>(`${this.baseUrl}/cliente`);
@@ -98,13 +100,67 @@ async newAllProducts() {
  
 
 
-  compraProd(id:string){
+  compraProd(id:string, stock: number){
 
-    if(localStorage.getItem('compra')){
+
+
+    if(localStorage.getItem('compra') && localStorage.getItem('stock')){
       localStorage.removeItem('compra')
+      localStorage.removeItem('stock')
     }
+    const stockStorage = JSON.stringify(stock)
+    localStorage.setItem('stock',stockStorage)
     localStorage.setItem('compra', id)
+  
   }
 
 
+  agregarCarrito(datos: datosCarrito){
+
+    const id = this.cartItems.find(x => x._id === datos._id)
+    if(id){
+      console.log(id.stock)
+      if(id.stock > id.cantidad){
+      id.cantidad++ 
+      }
+    }else{
+      this.cartItems.push(datos)
+    }
+    
+    this.saveStorage()
+    
+  }
+
+  saveStorage(){
+    localStorage.setItem('cart', JSON.stringify(this.cartItems))
+  }
+
+  cargarProductos(){
+    const carrito = localStorage.getItem('cart')
+    if(carrito){
+      this.cartItems = JSON.parse(carrito)
+    }
+    this.saveStorage()
+  }
+  
+
+  getCartItems(){
+    return this.cartItems
+  }
+
+  borrarCarritos(){
+    this.cartItems = []
+    this.saveStorage()
+  }
+
+  borrarProductoCarrito(id:string){
+    this.cartItems = this.cartItems.filter(x => x._id !== id)
+    this.saveStorage()
+  }
+
+  navegarCheckout(){
+    localStorage.removeItem('stock')
+    localStorage.removeItem('compra')
+    this.router.navigateByUrl('checkout/overview')
+  }
 }

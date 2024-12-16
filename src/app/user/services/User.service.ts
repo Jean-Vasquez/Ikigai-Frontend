@@ -1,24 +1,39 @@
 import { Injectable } from '@angular/core';
-import { AuthService } from '../../auth/services/Auth.service';
-import { datosPersona } from '../../auth/interfaces/datosPersona';
-import { usuario } from '../interfaces/usuario';
-import { Observable, of } from 'rxjs';
+import { environment } from '../../../environments/environments';
+import { configUser } from '../interfaces/usuario';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  constructor() { }
-
-  private cliente: datosPersona[] = []
-
-  public getUser():Observable<usuario[]>{
-    const data:usuario[]= this.cliente.map( i =>({
-      usuario: i.usuario
-    }))
-    
-    const finalUser = data.reverse().slice(0,1)
-    return of (finalUser)
+  
+  private baseUrl = environment.baseURL
+  constructor(private http: HttpClient) { 
+    this.datosUsuario()
   }
+  
+
+  datosUsuario():Observable<configUser>{
+
+    const token = localStorage.getItem('token')
+
+    const headers = new HttpHeaders()
+    .set('Authorization', `Bearer ${token}`)
+
+    return this.http.get<configUser>(`${this.baseUrl}/usuario`, {headers})
+  }
+
+
+  buscardDatos(id:string): Observable<configUser>{
+    const token = localStorage.getItem('token')
+
+    const headers = new HttpHeaders()
+    .set('Authorization', `Bearer ${token}`)
+    return this.http.get<configUser>(`${this.baseUrl}/usuario/data/${id}`,{headers})
+  }
+
 }
 

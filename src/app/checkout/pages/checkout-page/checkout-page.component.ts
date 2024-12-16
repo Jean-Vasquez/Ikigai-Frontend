@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CheckoutService } from '../../services/Checkout.service';
 
 @Component({
   selector: 'checkout-checkout-page',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrl: './checkout-page.component.css'
 })
 export class CheckoutPageComponent {
+  constructor(private checkoutService: CheckoutService){}
 
-}
+
+  ifCart(){
+    this.checkoutService.ifCart()
+  }
+
+} 

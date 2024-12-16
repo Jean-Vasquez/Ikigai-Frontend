@@ -5,15 +5,15 @@
     class="product-item mb-3">
       <img [src]="item.imagen" alt="">
       <p><strong>{{item.nombre}}</strong></p>
-      <p><strong>Categoría:</strong>{{item.categoria}}</p>
+      <p><strong>Categoría:</strong></p>
       <p><strong>Precio:</strong> S/ {{item.precio}}</p>
       <div class="quantity">
-        <button class="btn btn-danger" (click)="disminuirEn()">-</button>
-        <span>{{contador}}</span>
-        <button class="btn btn-danger" (click)="aumentarEn()">+</button>
+        <button class="btn btn-danger" >-</button>
+        <span>{{item.cantidad}}</span>
+        <button class="btn btn-danger" >+</button>
       </div>
 
-      <button (click)="eliminarProducto()" routerLink="products/product-list" >
+      <button  routerLink="products/product-list" >
         <i class="bi bi-trash3 " 
         ></i>
       </button>

@@ -7,6 +7,7 @@ import { AuthService } from '../../../../auth/services/Auth.service';
 import { Producto,  respuestaProductosCliente } from '../../../interfaces/response/respuesta-productos.interface';
 import { throwError } from 'rxjs';
 import Swal from 'sweetalert2';
+import { datosCarrito } from '../../../interfaces/data/datos-carrito.interface';
 
 @Component({
   selector: 'products-products',
@@ -16,11 +17,21 @@ import Swal from 'sweetalert2';
 export class ProductsComponent  {
   
   public productos : Producto[] = []
+  public cartItems : datosCarrito[] = []
 
+  public carrito : datosCarrito = {
+    _id: '',
+    cantidad: 0,
+    imagen: '',
+    nombre: '',
+    precio: 0,
+    stock: 0
+  }
 
 
   constructor(){
     this.getProductos()
+    
   }
 
 
@@ -45,4 +56,27 @@ export class ProductsComponent  {
     this.route.navigateByUrl(ruta)
   }
 
+
+
+  agregarCarrito(data: Producto){
+    const {_id,imagen,nombre,precio, stock} = data
+
+      this.carrito = {
+      _id: _id,
+      imagen: imagen,
+      cantidad: 1,
+      precio: precio,
+      nombre: nombre,
+      stock: +stock
+    }
+    this.productService.agregarCarrito(this.carrito)
+   
+  }
+
+  cargarCarritos(){
+   this.cartItems = this.productService.getCartItems()
+  }
+
+  
+ 
 }

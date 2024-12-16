@@ -17,21 +17,21 @@
                             <br><br>
                             <div class="row">
                                 <div class="col">
-                                    <b>Categoría:</b>{{x.categoria}}
+                                    <b>Categoría:</b> {{x.categoria | titlecase }}
                                     <br>
                                     <div class="row" style="padding-left: 40px;">
                                         <div class="col-lg-1 d-flex justify-content-center align-items-center">
-                                            <button class="btn btn-danger">-</button>
+                                            <button (click)="disminuirEn()" class="btn btn-danger">-</button>
                                         </div>
                                         <div class="col-lg-3 d-flex justify-content-center align-items-center text-center">
-                                            <p class="text-dark" style="font-size: 1.5rem;">1</p>
+                                            <p class="text-dark" style="font-size: 1.5rem;">{{contador}}</p>
                                         </div>
                                         <div class="col-lg-1 d-flex justify-content-center align-items-center">
-                                            <button class="btn btn-danger">+</button>
+                                            <button (click)="aumentarEn()" class="btn btn-danger">+</button>
                                         </div>
                                     </div>
                                     <br>
-                                    <b>Precio:{{x.precio}}</b> 
+                                    <b>Precio: {{x.precio}}</b> 
                                 </div>
                                 <div class="col">
                                     <br>
@@ -44,13 +44,13 @@
                                 <button class="btn btn-danger d-grid gap-2 mt-auto">Agregar al carrito</button>
                             </div>
                             <div class="row d-flex justify-content-center align-items-center">
-                                <button class="btn btn-danger d-grid gap-2" routerLink="/checkout/overview"   (click)="comprarProducto(x._id)"  >Comprar</button>
+                                <button class="btn btn-danger d-grid gap-2" routerLink="/checkout/overview"   (click)="comprarProducto(x._id,contador)"  >Comprar</button>
                             </div>
-                        </div>
+                        </div> 
                     </div>
                     <div class="row" style="padding: 20px;">
                         <b class="product-description">Descripción:</b>
-                        {{x.descripcion}}
+                        {{x.descripcion | titlecase}} 
                     </div>
                 </div>
             </div>

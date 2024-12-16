@@ -14,6 +14,8 @@ import { CategoriesComponent } from './components/products-page-list/categories/
 import { PaginationComponent } from './components/products-page-list/pagination/pagination.component';
 import { ProductsComponent } from './components/products-page-list/products/products.component';
 import { CartComponent } from './components/products-page-list/cart/cart.component';
+import { UserService } from '../user/services/User.service';
+import { UserModule } from '../user/user.module';
 
 
 
@@ -34,7 +36,9 @@ import { CartComponent } from './components/products-page-list/cart/cart.compone
     CommonModule,
     FormsModule, 
     RouterModule,
-    ProductsRoutingModule
+    UserModule,
+    ProductsRoutingModule,
+
   ],exports:[
     ProductDetailComponent,
     ProductsPageComponent,
