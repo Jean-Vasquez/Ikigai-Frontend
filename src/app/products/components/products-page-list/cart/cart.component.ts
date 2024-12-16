@@ -9,25 +9,45 @@ import { datosCarrito } from '../../../interfaces/data/datos-carrito.interface';
   styleUrl: './cart.component.css'
 })
 export class CartComponent {
+  public maxContador : number|undefined
+  cartItems: datosCarrito[] = [];
+  public contador: number = 1
+  constructor(private productService: ProductsService) {
+    this.getItems()
+  }
   
-  constructor(private productsService : ProductsService){
-    this.cargarCarrito()
+  getItems(){
+    this.cartItems = this.productService.getCartItems()
   }
 
-  public carrito : datosCarrito[] = []
-
-
-  agregarCarrito(data: datosCarrito){
-
-    this.carrito.push(data)
-
-    this.productsService.agregarCarrito(this.carrito)
-
-    this.cargarCarrito()
-
+  borrarCarritos(){
+    this.productService.borrarCarritos()
+    this.getItems()
   }
 
-  cargarCarrito(){
-    this.productsService.cargarCarrito()
+  borrarProducto(id:string){
+    this.productService.borrarProductoCarrito(id)
+    this.getItems()
   }
+
+  incrementarEn(carrito: datosCarrito){
+    this.productService.agregarCarrito(carrito)
+    this.getItems()
+  }
+
+  decrementarEn(){
+    this.cartItems.map((cant) => {
+      cant.cantidad--
+    })
+  }
+  
+  navegarCheckout(){
+    this.productService.navegarCheckout()
+  }
+
+
+
+
+
+
 }

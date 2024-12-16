@@ -9,6 +9,7 @@ import { CardFormComponent } from './components/card-form/card-form.component';
 import { RouterModule } from '@angular/router';
 import { CheckoutRoutingModule } from './checkout-routing.module';
 import { AuthModule } from '../auth/auth.module';
+import { ProductSummaryCartComponent } from './components/product-summary-cart/product-summary-cart.component';
 
 
 
@@ -18,7 +19,8 @@ import { AuthModule } from '../auth/auth.module';
     CustomerFormComponent,
     ProductSummaryComponent,
     PaymentSummaryComponent,
-    CardFormComponent
+    CardFormComponent,
+    ProductSummaryCartComponent
   ],
   imports: [
     CommonModule,

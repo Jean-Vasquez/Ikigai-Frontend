@@ -3,6 +3,7 @@ import { productoDetalle } from '../../../products/interfaces/response/respuesta
 import { CheckoutService } from '../../services/Checkout.service';
 import { Router } from '@angular/router';
 import { JsonPipe } from '@angular/common';
+import { ProductsService } from '../../../products/services/Products.service';
 
 @Component({
   selector: 'checkout-product-summary',
@@ -14,14 +15,20 @@ export class ProductSummaryComponent implements OnInit{
   public producto : productoDetalle[] = []
   public contador : number = 1
   public maxContador : number|undefined
+
   constructor(private checkoutService : CheckoutService, private router: Router){}
 
   ngOnInit(): void {
-    this.cargarProducto()    
+  /* this.cargarProducto()     */
+  this.cargarCarrito()
   }
  
 
   cargarProducto(){
+    if(!localStorage.getItem('compra')){
+      this.cargarCarrito()
+      
+    }
     this.checkoutService.cargarProducto().subscribe({
       next: (value) => {
         this.producto.push(value),
@@ -32,7 +39,14 @@ export class ProductSummaryComponent implements OnInit{
         }
       }
     })
+    
   } 
+
+  cargarCarrito(){
+    const productos = localStorage.getItem('cart')
+    console.log(productos)
+    this.producto.push(JSON.parse(productos!))
+  }
 
   aumentarEn(){
     if(this.maxContador! > this.contador ){
@@ -45,7 +59,6 @@ export class ProductSummaryComponent implements OnInit{
 
   disminuirEn(){
 
-    
     if(this.contador>1){
       localStorage.removeItem('stock')
     this.contador-=1

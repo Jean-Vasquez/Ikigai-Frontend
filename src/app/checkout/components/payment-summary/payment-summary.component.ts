@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CheckoutService } from '../../services/Checkout.service';
 import { Router } from '@angular/router';
 import { DatosVenta, DetalleVenta } from '../../interfaces/data/dataVenta.interface';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'checkout-payment-summary',
@@ -38,6 +39,9 @@ export class PaymentSummaryComponent {
       })
     } 
 
+    cargaCarrito(){
+      
+    }
 
     datosParaVenta(){
       const usuarioId = localStorage.getItem('usuarioId')!
@@ -61,8 +65,6 @@ export class PaymentSummaryComponent {
       this.router.navigateByUrl('/receipt/receipt-list')
 
     }
-
-
 
 
     realizarVenta(venta: DatosVenta){

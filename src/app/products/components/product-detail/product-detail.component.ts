@@ -11,7 +11,7 @@ import { productoDetalle } from '../../interfaces/response/respuesta-detalle.int
   styleUrl: './product-detail.component.css'
 })
 export class ProductDetailComponent implements OnInit {
-  product: any;
+  
 
   public products : productoDetalle[] = []
   public contador : number = 1

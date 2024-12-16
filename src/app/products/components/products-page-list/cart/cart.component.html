@@ -1,39 +1,35 @@
 <div class="carrito">
   <button class="carrito-button">
-    <strong class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">  
+    <strong class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
       <i class="bi bi-cart-fill"></i> Carrito <i class="bi bi-caret-right-fill"></i>
     </strong>
   </button>
 
   <nav class="navbar">
-      <div class="container-fluid">
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-          <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><strong>CARRITO DE COMPRAS</strong></h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-          </div>
-          <div class="offcanvas-body">
-            <ul class="list-group" ng>
-              <li  class="list-group-item">
-                <img   class="cart-item-image">
-                 - S/ - Cantidad: 
-                <div class="quantity-control">
-                  <button >-</button>
-                  
-                  <button >+</button>
-                  <button       class="m-auto border border-0 ">
-                  <i class="bi bi-trash3 "></i>
-                  </button>
-                </div>
-                <div>
-
-                </div>
-              </li>
-            </ul>
-            <button class="btn btn-danger mt-3 " >Limpiar Carrito</button>
-            <button class="btn btn-primary mt-3 mx-3" routerLink="/checkout/overview">Comprar</button>
-          </div>
+    <div class="container-fluid">
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><strong>CARRITO DE COMPRAS</strong></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div *ngIf="cartItems"  class="offcanvas-body">
+          <ul *ngFor="let item of cartItems" class="list-group">
+            <li  class="list-group-item">
+              <img [src]="item.imagen" alt="{{ item.nombre }}" class="cart-item-image">
+              Nombre: {{item.nombre}} - S/{{ item.precio }} - Cantidad: {{ item.cantidad }}
+              <div class="quantity-control">
+                <button >-</button>
+                <button (click)="incrementarEn(item)">+</button>
+                <button (click)="borrarProducto(item._id)" class="m-auto border border-0">
+                  <i class="bi bi-trash3"></i>
+                </button>
+              </div>
+            </li>
+          </ul>
+          <button class="btn btn-danger mt-3" (click)="borrarCarritos()" >Limpiar Carrito</button>
+          <button class="btn btn-primary mt-3 mx-3" (click)="navegarCheckout()">Comprar</button>
         </div>
       </div>
-    </nav>
+    </div>
+  </nav>
 </div>

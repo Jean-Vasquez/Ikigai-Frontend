@@ -1,0 +1,22 @@
+<div class="checkout-component">
+    <h3>Resumen de Productos</h3>
+    
+    <div *ngFor="let item of producto" 
+    class="product-item mb-3">
+      <img [src]="item.imagen" alt="">
+      <p><strong>{{item.nombre}}</strong></p>
+      <p><strong>Categoría:</strong></p>
+      <p><strong>Precio:</strong> S/ {{item.precio}}</p>
+      <div class="quantity">
+        <button class="btn btn-danger" >-</button>
+        <span>{{item.cantidad}}</span>
+        <button class="btn btn-danger" >+</button>
+      </div>
+
+      <button  routerLink="products/product-list" >
+        <i class="bi bi-trash3 " 
+        ></i>
+      </button>
+    </div>
+  </div>
+  

@@ -1,72 +1,49 @@
 <div class="body p-5 ">
-<div class="container-fluid fondo ">
-
     <div id="fonts"  class="row px-5 py-4">           
-
-        <div class="col-lg-6">
-
-            <h4 class="pt-3 ">NOMBRES:</h4>
-            <input type="text" class="form-control text_field">
-
-            <h4 class="pt-3">TIPO DE DOCUMENTO:</h4>
-            <div class="input-group">
-                <select class="form-select text_field">
-                  <option selected>SELECCIONAR ...</option>
-                  <option value="1">DNI</option>
-                  <option value="2">PASAPORTE</option>
-                  <option value="3">CARNET DE EXTRANJERÍA</option>
-                </select>
-            </div>
-            
-            <div class="row">
-
-                <h4 class="pt-3">FECHA DE NACIMIENTO:</h4>
-                <div class="col-md-4 pt-1">
-                    <input type="text" class="form-control text_field" placeholder="D/D">
-                </div>
-
-                <div class="col-md-4 pt-1">
-                    <input type="text" class="form-control text_field" placeholder="M/M">
-                </div>
-
-                <div class="col-md-4 pt-1">
-                    <input type="text" class="form-control text_field" placeholder="A/A">
-                </div>
-
-            </div>
-            
-            <h4 class="pt-3">CORREO ELECTRÓNICO:</h4>
-            <input type="text" class="form-control text_field">
-            
-        </div>
-
-        <div class="col-lg-6">
-
-            <h4 class="pt-3">APELLIDOS:</h4>
-            <input type="text" class="form-control text_field">
-
-            <h4 class="pt-3">NÚMERO DE DOCUMENTO:</h4>
-            <input type="text" class="form-control text_field">
-
-            <h4 class="pt-3">DIRECCIÓN:</h4>
-            <input type="text" class="form-control text_field">
-
-            <h4 class="pt-3">TELEFONO:</h4>
-            <input type="text" class="form-control text_field">
-            
-        </div>
-
-        <div class="col-12 pt-3">
-
-            <div class="d-flex justify-content-end">
+        <div class="container-fluid p-5  ">
+            <div  *ngFor="let data of dataUsuario"   class=" container-fluid fondo row px-5 py-4 ">
                 
-                <button class="btn btn-lg text-white btn_guardar">GUARDAR</button>                  
+                <div class="col-lg-6">
+                    <h4 class="pt-3">NOMBRES:</h4>
+                    <input type="text" class="form-control mb-3" placeholder="Ingresa tus nombres" [value]="data.idpersona.nombres">
+    
+                    <h4 class="pt-3">TIPO DE DOCUMENTO:</h4>
+                        <select class="form-select mb-3" [value]="data.idpersona.tipodoc">
+                        <option selected>SELECCIONAR ...</option>
+                        <option value="DNI">DNI</option>
+                        <option value="PASAPORTE">PASAPORTE</option>
+                        <option value="CARNET">CARNET DE EXTRANJERÍA</option>
+                        </select>
 
-            </div>    
-
+                    <h4 class="pt-3">FECHA DE NACIMIENTO:</h4>
+                    <input type="text" class="form-control mb-3" placeholder="Ingresa tu fecha de nacimiento" [value]="data.idpersona.fechanaci | date">
+    
+                    <h4 class="pt-3">CORREO ELECTRÓNICO:</h4>
+                    <input type="email" class="form-control mb-3" placeholder="Ingresa tu correo" [value]="data.idpersona.correo">
+                </div>
+    
+                
+                <div class="col-lg-6">
+                    <h4 class="pt-3">APELLIDOS:</h4>
+                    <input type="text" class="form-control mb-3" placeholder="Ingresa tus apellidos" [value]="data.idpersona.apellidos">
+    
+                    <h4 class="pt-3">NÚMERO DE DOCUMENTO:</h4>
+                    <input type="text" class="form-control mb-3" placeholder="Ingresa tu número de documento" [value]="data.idpersona.numerodoct">
+    
+                    <h4 class="pt-3">DIRECCIÓN:</h4>
+                    <input type="text" class="form-control mb-3" placeholder="Ingresa tu dirección" [value]="data.idpersona.direccion">
+    
+                    <h4 class="pt-3">TELÉFONO:</h4>
+                    <input type="text" class="form-control mb-3" placeholder="Ingresa tu teléfono" [value]="data.idpersona.telefono">
+                </div>
+    
+                <!-- Botón para guardar -->
+                <div class="col-12 pt-3">
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-lg btn-primary">GUARDAR</button>
+                    </div>
+                </div>
+            </div>
         </div>
-
-    </div>
-
-</div>
+    </div>
 </div>

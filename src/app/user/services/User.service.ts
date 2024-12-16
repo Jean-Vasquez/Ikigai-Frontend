@@ -28,7 +28,11 @@ export class UserService {
 
 
   buscardDatos(id:string): Observable<configUser>{
-    return this.http.get<configUser>(`${this.baseUrl}/usuario/data/${id}`)
+    const token = localStorage.getItem('token')
+
+    const headers = new HttpHeaders()
+    .set('Authorization', `Bearer ${token}`)
+    return this.http.get<configUser>(`${this.baseUrl}/usuario/data/${id}`,{headers})
   }
 
 }
