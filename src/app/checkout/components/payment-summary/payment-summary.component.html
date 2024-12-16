@@ -1,10 +1,8 @@
 <div class="checkout-summary">
     <h3>Resumen de la Compra</h3>
     <div class="mb-3">
-      <p><strong>Subtotal:</strong> S/ 80.00</p>
-      <p><strong>Impuestos:</strong> S/ 10.00</p>
-      <p><strong>Total a Pagar:</strong> S/ 90.00</p>
+      <p><strong>Total a Pagar:</strong> S/ {{total}}</p>
     </div>
-    <button class="btn btn-danger">Comprar</button>
+    <button class="btn btn-danger" (click)="datosParaVenta()">Comprar</button>
   </div>
   

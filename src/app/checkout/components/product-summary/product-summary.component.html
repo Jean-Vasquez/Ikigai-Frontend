@@ -8,10 +8,15 @@
       <p><strong>Categoría:</strong>{{item.categoria}}</p>
       <p><strong>Precio:</strong> S/ {{item.precio}}</p>
       <div class="quantity">
-        <button class="btn btn-danger">-</button>
-        <span>1</span>
-        <button class="btn btn-danger">+</button>
+        <button class="btn btn-danger" (click)="disminuirEn()">-</button>
+        <span>{{contador}}</span>
+        <button class="btn btn-danger" (click)="aumentarEn()">+</button>
       </div>
+
+      <button (click)="eliminarProducto()" routerLink="products/product-list" >
+        <i class="bi bi-trash3 " 
+        ></i>
+      </button>
     </div>
   </div>
   

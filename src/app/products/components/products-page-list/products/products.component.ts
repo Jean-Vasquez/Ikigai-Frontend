@@ -45,4 +45,8 @@ export class ProductsComponent  {
     this.route.navigateByUrl(ruta)
   }
 
+  cargarCarrito(){
+    this.productService.cargarCarrito()
+  }
+
 }

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { UserService } from '../../services/User.service';
+import { configUser } from '../../interfaces/usuario';
 
 @Component({
   selector: 'app-user-settings',
@@ -6,5 +8,25 @@ import { Component } from '@angular/core';
   styleUrl: './user-settings.component.css'
 })
 export class UserSettingsComponent {
+  public id : string = ''
+  public dataUsuario : configUser[] = []
+  constructor(private userService: UserService){
+    this.traerDatos()
+  }
 
+  traerDatos(){
+      this.userService.datosUsuario().subscribe({
+        next: (value) => {
+          this.id = value._id
+        },
+      })
+
+      if(this.id !== ''){
+        this.userService.buscardDatos(this.id).subscribe({
+          next: (value) => {
+            this.dataUsuario.push(value)
+          },
+        })
+      }
+  }
 }

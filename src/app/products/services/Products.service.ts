@@ -11,21 +11,24 @@ import { NewProduts } from '../interfaces/new-product';
 import { AuthService } from '../../auth/services/Auth.service';
 import { Producto, respuestaProductosCliente } from '../interfaces/response/respuesta-productos.interface';
 import { productoDetalle } from '../interfaces/response/respuesta-detalle.interface';
+import { datosCarrito } from '../interfaces/data/datos-carrito.interface';
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
-  private products: respuestaProductos[] = []; // Usa productsListArray para almacenar todos los detalles
+
 
   private baseUrl = `${environment.baseURL}/producto`; //url para conexion con la bd
 
+  private cart: datosCarrito[] = [];
+
   constructor(private http: HttpClient, private authService: AuthService) {
-      
+    this.cargarCarrito()
   }
 
- /*----------CRUD PRODUCTOOO---------------*/
+ 
 
-  // Obtener todos los productos Administrador
+ 
   getProducts(): Observable<paginacionProductos> {
     
     const token = localStorage.getItem('token') 
@@ -38,7 +41,7 @@ export class ProductsService {
   }
   
 
-   // Crear un nuevo producto
+ 
    addProduct(product: datosProductos): Observable<respuestaPrueba> { 
    
    
@@ -87,7 +90,6 @@ async newAllProducts() {
 
 
 
-  // Obtener todos los productos
   getProductsCliente(): Observable<respuestaProductosCliente> {
     
     return this.http.get<respuestaProductosCliente>(`${this.baseUrl}/cliente`);
@@ -98,13 +100,24 @@ async newAllProducts() {
  
 
 
-  compraProd(id:string){
+  compraProd(id:string, stock: number){
 
-    if(localStorage.getItem('compra')){
+    if(localStorage.getItem('compra') && localStorage.getItem('stock')){
       localStorage.removeItem('compra')
+      localStorage.removeItem('stock')
     }
+    const stockStorage = JSON.stringify(stock)
+    localStorage.setItem('stock',stockStorage)
     localStorage.setItem('compra', id)
+  
   }
 
+  agregarCarrito(carrito: datosCarrito[]){
+    localStorage.setItem('cart', JSON.stringify(carrito))
+  }
 
+  cargarCarrito(){
+    const carrito = localStorage.getItem('cart')
+    return carrito
+  }
 }

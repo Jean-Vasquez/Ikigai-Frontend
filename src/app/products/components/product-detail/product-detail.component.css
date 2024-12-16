@@ -169,3 +169,7 @@
 .header .nav-link:hover {
     text-decoration: none; /* Quitar el subrayado al pasar el ratón */
 }
+
+img{
+    width: 250px;
+}

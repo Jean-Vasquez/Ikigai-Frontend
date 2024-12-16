@@ -1,12 +1,13 @@
 import { Injectable, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environments';
 import { productoDetalle } from '../../products/interfaces/response/respuesta-detalle.interface';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Producto } from '../../products/interfaces/response/respuesta-productos.interface';
 import { Observable, throwError } from 'rxjs';
 import { ProductsService } from '../../products/services/Products.service';
 import { AuthService } from '../../auth/services/Auth.service';
 import { respuestaUsuario } from '../../auth/interfaces';
+import { DatosVenta } from '../interfaces/data/dataVenta.interface';
 
 
 @Injectable({
@@ -18,11 +19,11 @@ export class CheckoutService implements OnInit{
 
    public baseUrl = environment.baseURL
 
-   public producto : productoDetalle[] = []
+   
 
-   public usuario : [] = []
+   
 
-
+  
   ngOnInit(){
     this.cargarProducto()
 
@@ -32,6 +33,22 @@ export class CheckoutService implements OnInit{
       const id = localStorage.getItem('compra')
       return this.productsService.getProductById(id!)
   }
+
+  eliminarProducto(){
+    localStorage.removeItem('compra')
+  }
+
+
+  realizarVenta(venta: DatosVenta){
+
+    const token = localStorage.getItem('token')
+
+    const headers = new HttpHeaders().
+    set('Authorization', `Bearer ${token}`)
+    return this.http.post(`${this.baseUrl}/venta`, venta, {headers} )
+  }
+
+
 
 
 

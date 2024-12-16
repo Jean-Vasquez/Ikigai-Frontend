@@ -14,6 +14,8 @@ export class ProductDetailComponent implements OnInit {
   product: any;
 
   public products : productoDetalle[] = []
+  public contador : number = 1
+  public maxContador : number|undefined
   private productsService = inject(ProductsService)
   private id: string =''
   constructor(private route: ActivatedRoute){
@@ -28,13 +30,32 @@ export class ProductDetailComponent implements OnInit {
 
   getProductosId(id:string){
     this.productsService.getProductById(id).subscribe({
-      next: (product) => this.products.push(product)
+      next : (product) =>{
+        this.products.push(product)
+        this.maxContador = product.stock
+      }
+      
     })
   }
 
 
-  comprarProducto(id: string){
-    this.productsService.compraProd(id)
+  comprarProducto(id: string,stock: number){
+    this.productsService.compraProd(id,stock)
+  }
+
+
+  aumentarEn(){
+    if(this.maxContador! > this.contador ){
+      this.contador+= 1
+    }
+    
+  }
+
+  disminuirEn(){
+
+    if(this.contador>1){
+    this.contador-=1
+    }
   }
 
 
